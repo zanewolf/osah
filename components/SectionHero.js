@@ -7,7 +7,7 @@ import {Button} from '@material-ui/core'
 export default function SectionHero ({image,imageposition,imageheight,children}) {
     return (
         <section className={`relative ${imageheight === '30vh'? 'h-[30vh]' : 'h-[50vh]'}  w-[100vw]`}>
-            <div className={styles.imageWrapper}>
+            {/*<div className={styles.imageWrapper}>*/}
                 <Image
                     // className={styles.landingImage}
                     priority={true}
@@ -18,7 +18,7 @@ export default function SectionHero ({image,imageposition,imageheight,children})
                     objectPosition={imageposition}
                     // position={'relative'}
                 />
-            </div>
+            {/*</div>*/}
 
 
             <div className={styles.sectionHeroContent}>

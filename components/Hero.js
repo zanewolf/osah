@@ -12,12 +12,13 @@ export default function Hero ({image,imagealt,imageposition,imageheight,children
         <section className={styles.heroWrapper}>
             <Image
                 className={styles.landingImage}
-                priority
+                priority={true}
                 src={image}
                 alt={imagealt}
                 layout={'fill'}
                 objectFit={'cover'}
                 objectPosition={imageposition}
+                loading={'eager'}
                 // position={'relative'}
             />
 

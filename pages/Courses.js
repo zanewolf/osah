@@ -5,7 +5,7 @@ import {getCourses} from "../utils/Airtable";
 import CourseList from "../components/CourseList";
 import { useRouter } from 'next/router'
 
-export async function getStaticProps({req,res}){
+export async function getStaticProps(){
     const courses = await getCourses();
     // console.log(courses)
     // res.setHeader(
@@ -22,18 +22,18 @@ export async function getStaticProps({req,res}){
 }
 
 export default function Courses({content}) {
-    const [harvardFall,setHarvardFall] = useState(content.filter((d,i)=>{
+    let harvardFall = content.filter((d,i)=>{
         return d.fields.Semester==='Fall' & d.fields.School ==='Harvard'
-    }))
-    const [harvardSpring,setHarvardSpring] = useState(content.filter((d,i)=>{
+    })
+    let harvardSpring = content.filter((d,i)=>{
         return d.fields.Semester==='Spring' & d.fields.School ==='Harvard'
-    }))
-    const [mitFall,setMITFall] = useState(content.filter((d,i)=>{
+    })
+    let mitFall = content.filter((d,i)=>{
         return d.fields.Semester==='Fall' & d.fields.School ==='MIT'
-    }))
-    const [mitSpring,setMITSpring] = useState(content.filter((d,i)=>{
+    })
+    let mitSpring = content.filter((d,i)=>{
         return d.fields.Semester==='Spring' & d.fields.School ==='MIT'
-    }))
+    })
 
     const router = useRouter()
     // const style = {
@@ -49,7 +49,7 @@ export default function Courses({content}) {
 
     return (
         <>
-            <SectionHero image={rocky} imageheight={'30vh'} imageposition={'right'} >
+            <SectionHero image={rocky} imageheight={'30vh'} imageposition={'right'} priority={true}>
                 <div className={'text-2xl lg:text-5xl font-bold drop-shadow-xl shadow-black mb-8 mt-16 text-center'}>Undergraduate Marine-Related Courses
                 </div>
             </SectionHero>

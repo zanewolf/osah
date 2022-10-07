@@ -40,13 +40,14 @@ let options=  [
 
 // let buttonText = '+'
 
-export async function getServerSideProps({req,res}){
+export async function getServerSideProps(context){
+    console.log(context)
     const people = await getPeople();
     // console.log(people)
-    // res.setHeader(
-    //     'Cache-Control',
-    //     'public, s-maxage=10, stale-while-revalidate=59'
-    // )
+    context.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+    )
 
     return {
         props:{
@@ -55,7 +56,7 @@ export async function getServerSideProps({req,res}){
     }
 
 }
-export default function Directory({content}) {
+export default function People({content}) {
     const [selected, setSelected] = useState(options);
     const [buttonText, setButtonText] = useState('')
     const [search, setSearch] = useState("");
