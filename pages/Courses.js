@@ -49,7 +49,7 @@ export default function Courses({content}) {
 
     return (
         <>
-            <SectionHero image={rocky} imageheight={'30vh'} imageposition={'right'}>
+            <SectionHero image={rocky} imageheight={'30vh'} imageposition={'right'} >
                 <div className={'text-2xl lg:text-5xl font-bold drop-shadow-xl shadow-black mb-8 mt-16 text-center'}>Undergraduate Marine-Related Courses
                 </div>
             </SectionHero>

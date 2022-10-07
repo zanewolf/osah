@@ -39,6 +39,7 @@ export default function UndergradPage() {
                 <InfoCard
                 image={workshoppic}
                 title={'OSAH Research Workshop'}
+                imagePriority={true}
                 >
                     We will offer a workshop at the beginning of each semester, starting in Spring 2023, to help undergraduates understand ocean scholarship across the University. In this workshop, we will address common questions and concerns regarding research, and outline several ways to find and join groups or labs that pique your interest.
                 </InfoCard>
@@ -46,6 +47,7 @@ export default function UndergradPage() {
                     image={marineclass}
                     title={'Undergrad Courses in Marine Science'}
                     reverse={true}
+                    imagePriority={true}
                 >
                     <div className={'flex flex-col flex-nowrap gap-2'}>
                         <p>High enrollment in marine science classes at Harvard shows that our students have an appetite for the topic. There are many Harvard courses related to the marine environment, though they are spread across many concentrations and schools.</p>

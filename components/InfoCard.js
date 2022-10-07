@@ -5,7 +5,7 @@ import {FaChevronRight} from "react-icons/fa";
 import {FaExternalLinkAlt,FaEnvelope,FaTimes} from "react-icons/fa";
 import workshoppic from "../public/workshop.jpg";
 
-export default function InfoCard({image, title, reverse,children}) {
+export default function InfoCard({image, title, imagePriority, reverse,children}) {
 
     const updateComponent=(comp)=>{
         setComp(comp)
@@ -17,7 +17,7 @@ export default function InfoCard({image, title, reverse,children}) {
                 <div className={'w-full h-[40vh] lg:w-1/3 lg:h-full relative '}>
                     <Image
                         // className={styles.landingImage}
-                        priority
+                        priority={imagePriority}
                         src={image}
                         alt="Picture of people sitting around a desk"
                         layout={'fill'}
