@@ -23,7 +23,7 @@ export default function CourseList({title,courses,updating}) {
                         {courses.map((d,i)=>{
                             return (<li key={i}><span className={'font-bold'}>{d.fields.Code}</span>: {d.fields.Name}</li>)
                         })}
-                        {updating && <p className={'text-black relative'}>Hang tight, we're compiling the list. </p>}
+                        {updating && <p className={'text-black relative'}>Hang tight, we&apos;re compiling the list. </p>}
                     </div>
 
 

@@ -122,7 +122,7 @@ export default function Directory({content}) {
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
-    }, [updateDimensions])
+    }, )
 
     return (
         // <>
