@@ -35,7 +35,7 @@ export default function Home() {
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
-    }, [updateDimensions]);
+    }, );
 
 
 

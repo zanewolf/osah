@@ -89,7 +89,7 @@ export default function UndergradPage() {
                             <li> Seven Seas Media Job Board (link)</li>
                             <li> Schmidt Marine Job Board (link)</li>
                             <li> NOAA Job Board (link)</li>
-                            <li> USA Jobs (link) (Note: Look up some agencies you aren't familiar with like NOAA, BOEM, Navy, Coast Guard, EPA, U.S. Army Corps of Engineers, U.S. Geological Survey, etc. You might be surprised the types of jobs available)</li>
+                            <li> USA Jobs (link) (Note: Look up some agencies you aren&apos;t familiar with like NOAA, BOEM, Navy, Coast Guard, EPA, U.S. Army Corps of Engineers, U.S. Geological Survey, etc. You might be surprised the types of jobs available)</li>
                             <li> Zintellect Government Jobs Board (link)</li>
                             <li> Texas A&M Wildlife and Fisheries Job Board (link)</li>
                             <li> Conservation Job Board (link)</li>

@@ -46,7 +46,7 @@ export default function JoinPage() {
                     </div>
                     <div className={'flex flex-col flex-nowrap gap-10 justify-center m-auto w-[90vw] md:w-4/5 rounded-2xl p-10 relative bg-black bg-opacity-30 backdrop-blur-sm'}>
                         <p>
-                            Welcome! As you fill out these forms, we ask that you think about how you and your work aligns with broad areas of work, which we call "primary fields": Environmental Sciences, Biological Sciences, Engineering, Humanities, Policy/Economics, Communications, and Cross-Cutting Fields. You might feel your specific disciplines, or sub-fields, intersect two or more primary fields, or that you fit into none of them. That's totally okay (and awesome)! Select the primary field you think is best. If you'd like to see some examples or edge-cases, check out our guide below.
+                            Welcome! As you fill out these forms, we ask that you think about how you and your work aligns with broad areas of work, which we call &quot;primary fields&quot;: Environmental Sciences, Biological Sciences, Engineering, Humanities, Policy/Economics, Communications, and Cross-Cutting Fields. You might feel your specific disciplines, or sub-fields, intersect two or more primary fields, or that you fit into none of them. That&apos;s totally okay (and awesome)! Select the primary field you think is best. If you&apos;d like to see some examples or edge-cases, check out our guide below.
                         </p>
                         <div className={'bg-blue-600 w-[20vw] p-3 rounded-3xl hover:scale-110 relative m-auto text-center text-2xl'}>
                             <a
