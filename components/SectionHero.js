@@ -10,7 +10,7 @@ export default function SectionHero ({image,imageposition,imageheight,children})
             <div className={styles.imageWrapper}>
                 <Image
                     // className={styles.landingImage}
-                    priority
+                    priority={true}
                     src={image}
                     alt="Picture of ocean surface with sunset rays"
                     layout={'fill'}

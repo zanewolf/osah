@@ -40,7 +40,7 @@ let options=  [
 
 // let buttonText = '+'
 
-export async function getStaticProps({req,res}){
+export async function getServerSideProps({req,res}){
     const people = await getPeople();
     // console.log(people)
     // res.setHeader(
