@@ -1,0 +1,76 @@
+.card{
+    border: 1px solid black;
+    box-shadow: #333333;
+}
+
+.colorHeader {
+    height: 100%;
+    border-radius: 10px 10px 0px 0px;
+    padding: 1px 1px 0px 0px;
+}
+
+.imageContainer{
+    position:relative;
+    max-width: 28%;
+    width:auto;
+    height:75%;
+    overflow:hidden;
+    border-radius: 50%;
+    /*display:flex;*/
+    justify-content: center;
+    margin: auto;
+    /*relative m-auto max-w-[28%] w-auto h-[75%] overflow-hidden rounded-full*/
+}
+
+.avatarWrapper{
+    /*avatarWrapper -translate-x-4 -translate-y-4*/
+    transform:translate(-5px,-5px);
+}
+
+/*.profileCard > .bg-100{*/
+/*    background-image: linear-gradient(to bottom, #351431 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-200{*/
+/*    background-image:linear-gradient(to bottom, #823c3a 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-300{*/
+/*    background-image: linear-gradient(to bottom, #f5a578 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-400{*/
+/*    background-image: linear-gradient(to bottom, #002d50 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-500{*/
+/*    background-image: linear-gradient(to bottom, #01778c 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-600{*/
+/*    background-image: linear-gradient(to bottom, #52b69a 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-700{*/
+/*    background-image: linear-gradient(to bottom, #818588 50% , white 50%);*/
+/*}*/
+
+/*.profileCard .bg-800{*/
+/*    background-image: linear-gradient(to bottom, #000 50% , white 50%);*/
+/*}*/
+
+/*.image-container {*/
+
+/*    height: 100%;*/
+/*}*/
+
+/*.image-container > div {*/
+/*        position: unset !important;*/
+/*    }*/
+
+/*.image-container .image {*/
+/*        object-fit: contain;*/
+/*        height: 100% !important;*/
+/*        position: relative !important;*/
+/*        width: unset !important;*/
+/*}*/

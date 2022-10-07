@@ -1,0 +1,77 @@
+
+.heroWrapper {
+    height: 100vh;
+    position:relative;
+}
+
+@media only screen and (max-width: 1024px){
+    .heroWrapper{
+        min-height:100vh;
+        height:auto;
+    }
+
+}
+
+
+.imageWrapper {
+    z-index: -1;
+    /*height:auto;*/
+}
+
+.landingImage{
+
+}
+
+
+
+.heroContent{
+    display:flex;
+    flex-flow:column nowrap;
+    z-index: 1;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+
+}
+
+.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-attachment: fixed;
+}
+
+@media only screen and (max-width: 1024px){
+    .heroContent{
+        min-height:100vh;
+        height:auto;
+    }
+
+}
+
+.sectionHeroWrapper{
+    position:relative;
+    width:100vw;
+    height:30vh;
+}
+
+.sectionHeroContent{
+    /*position:relative;*/
+    display:flex;
+    flex-flow:column nowrap;
+    z-index: 1;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+
+}
+
+.sideHeroWrapper{
+    width:50vw;
+    height:100vh;
+}
