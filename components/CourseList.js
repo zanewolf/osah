@@ -19,7 +19,7 @@ export default function CourseList({title,courses,updating}) {
                     {title}
                 </AccordionSummary>
                 <AccordionDetails>
-                    <div className={'flex flex-col flex-nowrap min-h-[10vh]'}>
+                    <div className={'flex flex-col flex-nowrap min-h-[10vh] bulletList'}>
                         {courses.map((d,i)=>{
                             return (<li key={i}><span className={'font-bold'}>{d.fields.Code}</span>: {d.fields.Name}</li>)
                         })}

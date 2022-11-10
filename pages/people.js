@@ -103,7 +103,7 @@ export default function People({content}) {
 
         // console.log(filteredData2)
         setDirData(filteredData2)
-    },[search,selected])
+    },[search,selected,content])
 
 
     //// functions to change button text based on window size

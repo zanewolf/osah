@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import rocky from '../public/rocky-shore-of-the-island-of-tenerife-aerial-dron-2021-08-27-09-58-20-utc.jpg'
 import SectionHero from "../components/SectionHero";
-import {getCourses} from "./api/utils/Airtable";
+import {tableCourses,getData} from "./api/utils/Airtable";
 import CourseList from "../components/CourseList";
 import { useRouter } from 'next/router'
 
 export async function getStaticProps(){
-    const courses = await getCourses();
+    const courses = await getData(tableCourses);
     // console.log(courses)
     // res.setHeader(
     //     'Cache-Control',

@@ -7,7 +7,6 @@ import ocean3 from "../public/ocean3.jpg";
 
 export default function News() {
 
-    console.log(data)
     return (
         <>
             <Hero image={ocean3} imageposition={'center'}>
