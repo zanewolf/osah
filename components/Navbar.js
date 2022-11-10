@@ -51,7 +51,6 @@ export default function Navbar() {
 
     const router = useRouter();
 
-    console.log(router)
     return (
         <nav className="flex px-2 lg:px-4 lg:py-2 text-center items-center">
             {/*<div className="mobile w-full">*/}
