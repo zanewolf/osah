@@ -12,7 +12,7 @@ export default function Grants() {
     return (
         <div>
             <SectionHero image={ocean3} imageposition={'center'} imageheight={'30vh'}>
-                <div className={'flex pt-15 text-center pt-14 lg:pt-0 m-auto z-1 relative text-white text-6xl drop-shadow-2xl shadow-black'}>Grant Information</div>
+                <div className={'flex text-center pt-14 lg:pt-0 m-auto z-1 relative text-white text-2xl lg:text-6xl font-bold drop-shadow-2xl shadow-black'}>Grant Information</div>
             </SectionHero>
             <div className={'text-black pt-2 w-96 md:w-5/6 flex items-center h-auto min-h-[30vh] text-center m-auto leading-tight sm:leading-10 text-lg lg:text-xl'}>One of our primary goals at Ocean Scholars @ Harvard is to support marine science at Harvard. Funding is the lifeblood of research, and we would like to help you, the community, find more funding to sustain your research and build your career. We are constantly compiling marine research funding opportunities in order to share them with you. What&apos;s more, we will meet with you one-on-one to understand your needs then provide tailored funding sources, help you understand the application process, provide examples of funded grants, organize an informal proposal peer review, and enhance the overall strength of your proposal (e.g., improving Broader Impacts). We are here to help people at every level, including principal investigators, staff, postdocs, graduate students, and undergraduates. Please reach out to get started (hyperlink to grants page short survey).</div>
             <div className={'grantInfoSection min-h-[20vh] text-black flex flex-col flex-wrap m-auto  justify-evenly w-full h-full items-center text-center' }>

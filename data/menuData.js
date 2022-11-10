@@ -4,5 +4,5 @@ export const menuData=[
     {'title': 'data', 'to':'/datamap'},
     {'title': 'news', 'to':'/news'},
     {'title': 'grants', 'to':'/grants'},
-    {'title': 'for undergrads', 'to':'/undergrad'}
+    {'title': 'resources', 'to':'/resources'}
 ]
