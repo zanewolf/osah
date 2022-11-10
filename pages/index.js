@@ -3,26 +3,21 @@ import ocean3 from '../public/ocean3.jpg'
 import ocean3_gradient from '../public/ocean3_gradient_subwidth.jpg'
 import ocean3_gradient2 from '../public/ocean3_gradient.jpg'
 import ocean_floor from '../public/ocean_floor.jpg'
-import React from "react";
+import React, {useContext} from "react";
+import {DataContext} from "../contexts/dataContext";
 import '../styles/header.module.css'
 import Hero from '../components/Hero'
 import {useEffect,useState} from "react";
-import useWindowDimensions from '../utils/useWindowSize'
 import AboutTeam from "../components/AboutTeam";
 import dynamic from 'next/dynamic'
-
-// const ocean3 = dynamic(() => import('../public/ocean3.jpg'))
-// const ocean3_gradient = dynamic(() => import('../public/ocean3_gradient_subwidth.jpg'))
-// const ocean3_gradient2 = dynamic(() => import('../public/ocean3_gradient.jpg'))
-// const ocean_floor = dynamic(() => import('../public/ocean_floor.jpg'))
 
 
 
 Home.title='Ocean Scholars | Home'
 
 
-export default function Home() {
 
+export default function Home() {
 
     const [width, setWidth]   = useState(typeof window === 'undefined' ? 0 : window.innerWidth);
 

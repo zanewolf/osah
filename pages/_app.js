@@ -4,7 +4,7 @@ import Head from "next/head";
 import Router from "next/router";
 import {useEffect,useState} from 'react'
 import LoadingScreen from "../components/LoadingScreen";
-// import {ParallaxProvider} from "react-scroll-parallax";
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -12,11 +12,9 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         const start = () => {
-            console.log("start");
             setLoading(true);
         };
         const end = () => {
-            console.log("findished");
             setLoading(false);
         };
         Router.events.on("routeChangeStart", start);

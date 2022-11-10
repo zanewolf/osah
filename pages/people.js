@@ -3,13 +3,13 @@ import {useState,useEffect,useMemo} from "react";
 import SectionHero from "../components/SectionHero";
 import {MultiSelect} from "react-multi-select-component";
 import Link from "next/link";
-import {getPeople} from "../utils/Airtable";
+import {tablePeople,getData} from "./api/utils/Airtable";
 import ProfileCard from '../components/ProfileCard';
 import debounce from "lodash.debounce";
 import ocean3 from '../public/ocean3.jpg'
-import LoadingScreen from "../components/LoadingScreen";
+import useSWR from 'swr'
 
-// const ocean3 = dynamic(() => import('../public/ocean3.jpg'))
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 
 let options=  [
@@ -38,38 +38,35 @@ let options=  [
     }
 ]
 
-// let buttonText = '+'
 
-export async function getServerSideProps(context){
-    console.log(context)
-    const people = await getPeople();
-    // console.log(people)
-    context.res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=10, stale-while-revalidate=59'
-    )
+export async function getStaticProps(){
+    const res = await getData(tablePeople);
+
 
     return {
         props:{
-            content:people,
-        }
+            content:res,
+        },
+        revalidate:60
     }
 
 }
+
 export default function People({content}) {
     const [selected, setSelected] = useState(options);
     const [buttonText, setButtonText] = useState('')
     const [search, setSearch] = useState("");
     const [dirData, setDirData] = useState(content)
-   //  const [loading, setLoading] = React.useState(true);
-   //
-   // useEffect(() => {
-   //     setTimeout(() => setLoading(true), 6000);
-   //  }, []);
+
+    // const { data, error } = useSWR('/api/getPeople', fetcher)
+    //
+    // console.log(data)
+    //
 
 
-    // functions to debounce search bar and update search state
 
+
+    ////// functions to debounce search bar and update search state
     const handleChange = (e) => {
         // console.log(e.target.value)
         setSearch(e.target.value);
@@ -87,9 +84,7 @@ export default function People({content}) {
     });
 
 
-    // functions to filter data based on search and selection menus
-
-
+    ////// functions to filter data based on search and selection menus
     useEffect(()=>{
         let filteredData={}
         let filteredData2={}
@@ -108,8 +103,10 @@ export default function People({content}) {
 
         // console.log(filteredData2)
         setDirData(filteredData2)
-    },[search,selected,content])
+    },[search,selected])
 
+
+    //// functions to change button text based on window size
     useEffect(()=>{
         window.innerWidth > 1024 ? setButtonText('Add Profile') : setButtonText('+')
     },[])

@@ -14,6 +14,13 @@ module.exports = {
     deviceSizes: [600, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     formats: ['image/avif', 'image/webp'],
   },
+  env: {
+    AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
+    AIRTABLE_BASE_ID:process.env.AIRTABLE_BASE_ID,
+    AIRTABLE_PEOPLE_TABLE_NAME:process.env.AIRTABLE_PEOPLE_TABLE_NAME,
+    AIRTABLE_COURSES_TABLE_NAME:process.env.AIRTABLE_COURSES_TABLE_NAME,
+    AIRTABLE_DATA_TABLE_NAME:process.env.AIRTABLE_DATA_TABLE_NAME,
+  },
   reactStrictMode: true,
   swcMinify:true,
   webpack: (config) => {

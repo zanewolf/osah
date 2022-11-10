@@ -51,7 +51,7 @@ export default function UndergradPage() {
                 >
                     <div className={'flex flex-col flex-nowrap gap-2'}>
                         <p>High enrollment in marine science classes at Harvard shows that our students have an appetite for the topic. There are many Harvard courses related to the marine environment, though they are spread across many concentrations and schools.</p>
-                        <Link href={'/Courses'} passHref={true} >
+                        <Link href={'/courses'} passHref={true} >
                             <button
                                 className={'bg-blue-600 text-white w-1/3 p-1 rounded-3xl mt-5 hover:scale-110 relative text-center text-xl'}
                                 alt="alt text"

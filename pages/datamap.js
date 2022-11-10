@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import ocean3 from "../public/ocean3.jpg";
 import {useEffect, useMemo, useState} from "react";
 import debounce from "lodash.debounce";
-import {getData} from "../utils/Airtable";
+import {getData, tableData} from "./api/utils/Airtable";
 import SectionHero from "../components/SectionHero";
 
 let options=  [
@@ -33,7 +33,7 @@ let options=  [
 ]
 
 export async function getServerSideProps({req,res}){
-    const data = await getData();
+    const data = await getData(tableData);
 
     return {
         props:{

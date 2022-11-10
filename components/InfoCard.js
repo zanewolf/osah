@@ -7,13 +7,9 @@ import workshoppic from "../public/workshop.jpg";
 
 export default function InfoCard({image, title, imagePriority, reverse,children}) {
 
-    const updateComponent=(comp)=>{
-        setComp(comp)
-    }
-
     return (
         <>
-            <div className={`flex flex-row flex-wrap lg:flex-nowrap justify-around items-center gap-x-10 m-auto text-black w-[90vw] h-auto lg:w-[75vw] lg:h-[55vh] ${reverse ? 'flex-row-reverse' : 'flex-row'} `}>
+            <div className={`flex flex-wrap lg:flex-nowrap justify-around items-center gap-x-10 m-auto text-black w-[90vw] h-auto lg:w-[75vw] lg:h-[55vh] ${reverse ? 'flex-row-reverse' : 'flex-row'} `}>
                 <div className={'w-full h-[40vh] lg:w-1/3 lg:h-full relative '}>
                     <Image
                         // className={styles.landingImage}
