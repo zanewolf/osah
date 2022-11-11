@@ -8,10 +8,13 @@ import InfoCard from "../components/InfoCard";
 import workshoppic from '../public/workshop.jpg'
 import mentorship from '../public/mentorship.jpg'
 import marineclass from '../public/marineclass.jpg'
+import labresearch from '../public/labresearch.jpg'
 import whoi from '../public/whoi.jpg'
 import ehs from '../public/ehs.jpg'
 import GrantCard from "../components/GrantCard";
+import {FaChevronDown} from 'react-icons/fa'
 import { Menu } from '@headlessui/react'
+import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 
 
 export default function ResourcePage() {
@@ -95,21 +98,29 @@ export default function ResourcePage() {
                     <h2 className={'m-auto text-center font-bold uppercase text-3xl p-4'}>For Marine Research and Marine-Related Jobs</h2>
                     <div className="verticalRuler h-[3px] bg-white w-full md:w-[80vw] justify-center m-auto"></div>
                 </div>
-                <div className={'m-5 flex flex-col gap-y-16'}>
+                <div className={'m-5 flex flex-col md:gap-y-40 gap-y-16'}>
                 <GrantCard
-                    image={whoi}
+                    image={labresearch}
                     title={'Jobs At Harvard'}
                     reverse={false}
                 >
                     <div>
                         <p>Conducting research as an undergraduate alongside coursework can be an important piece of building a career in marine science. Research can be conducted for credit, for pay, and as work towards a thesis, all during the semester as your schedule allows. Research opportunities for undergraduates are commonly found by reaching out to faculty. In addition, the following within-Harvard databases may including postings/opportunities in marine science. Note that we are encouraging PIs to post opportunities to broaden access to marine science at Harvard.</p>
 
-                        <div className={'mt-2 font-light bulletList'}>
-                            <li>Harvard Office of Undergraduate Research and Fellowships (link)</li>
-                            <li>Harvard Student Research Opportunities in FAS (link)</li>
-                            <li>Harvard Student Employment Office Job Board (link)</li>
-                            <li> Guidance from Harvard (link) </li>
+                        <div className="pt-4">
+                            <Accordion>
+                                <AccordionSummary expandIcon={<FaChevronDown />}>Click to view links.</AccordionSummary>
+                                <AccordionDetails>
+                                    <div className={'mt-2 font-light bulletList [&>li>a]:text-blue-800 '}>
+                                        <li><a href={'https://uraf.harvard.edu/'} target={'_blank'} rel={'noreferrer'}>Harvard Office of Undergraduate Research and Fellowships </a> </li>
+                                        <li><a href={'https://lifesciences.fas.harvard.edu/undergraduates-open-research-positions-projects'} target={'_blank'} rel={'noreferrer'}>Harvard Student Research Opportunities in FAS  </a></li>
+                                        <li><a href={'https://seo.harvard.edu/'} target={'_blank'} rel={'noreferrer'}>Harvard Student Employment Office Job Board </a></li>
+                                        <li> <a href={'https://lifesciences.fas.harvard.edu/research'} target={'_blank'} rel={'noreferrer'}>Guidance from Harvard  </a></li>
+                                    </div>
+                                </AccordionDetails>
+                            </Accordion>
                         </div>
+
                     </div>
                 </GrantCard>
                 <GrantCard
@@ -118,21 +129,30 @@ export default function ResourcePage() {
                     reverse={true}
                     imagePriority={false}
                 >
-                    <div>
+                    <div >
                         <p>
                             Gaining experience outside of Harvard labs can also be valuable in building your expertise in marine science. Such opportunities may occur through study abroad, during the summer break or J term, or even just after graduation. The databases below are a few that include a wide range of research opportunities, internships, and jobs outside of Harvard for during and after graduation.
                         </p>
-                        <div className={'mt-2 font-light bulletList'}>
-                            <li>Pathways to Science Database (link)</li>
-                            <li> Seven Seas Media Job Board (link)</li>
-                            <li> Schmidt Marine Job Board (link)</li>
-                            <li> NOAA Job Board (link)</li>
-                            <li> USA Jobs (link) (Note: Look up some agencies you aren&apos;t familiar with like NOAA, BOEM, Navy, Coast Guard, EPA, U.S. Army Corps of Engineers, U.S. Geological Survey, etc. You might be surprised the types of jobs available)</li>
-                            <li> Zintellect Government Jobs Board (link)</li>
-                            <li> Texas A&M Wildlife and Fisheries Job Board (link)</li>
-                            <li> Conservation Job Board (link)</li>
+                        <div className={'pt-4'}><Accordion>
+                            <AccordionSummary expandIcon={<FaChevronDown />}>
+                                Click to view links.
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div className={`mt-2 font-light bulletList [&>li>a]:text-blue-800 `}>
+                                    <li> <a className={'font-'} href={'https://www.pathwaystoscience.org/programs.aspx?descriptorhub=SummerResearch_Summer%20Research%20Opportunity'} target={'_blank'} rel={'noreferrer'}>Pathways to Science Database </a></li>
+                                    <li> <a href={'https://sevenseasmedia.org/ocean-jobs/'} target={'_blank'} rel={'noreferrer'}>Seven Seas Media Job Board </a></li>
+                                    <li> <a href={'https://jobs.schmidtmarine.org/jobs'} target={'_blank'} rel={'noreferrer'}>Schmidt Marine Job Board </a></li>
+                                    <li> <a href={'https://coast.noaa.gov/fellowship/jobs.html'} target={'_blank'} rel={'noreferrer'}>NOAA Job Board </a></li>
+                                    <li> <a href={'https://www.usajobs.gov/'} target={'_blank'} rel={'noreferrer'}>USA Jobs  (Note: Look up some agencies you aren&apos;t familiar with like NOAA, BOEM, Navy, Coast Guard, EPA, U.S. Army Corps of Engineers, U.S. Geological Survey, etc. You might be surprised the types of jobs available)</a></li>
+                                    <li> <a href={'https://www.zintellect.com/Catalog'} target={'_blank'} rel={'noreferrer'}>Zintellect Government Jobs Board </a></li>
+                                    <li> <a href={'https://wfscjobs.tamu.edu/job-board/'} target={'_blank'} rel={'noreferrer'}>Texas A&M Wildlife and Fisheries Job Board </a></li>
+                                    <li> <a href={'https://www.conservationjobboard.com'} target={'_blank'} rel={'noreferrer'}>Conservation Job Board </a></li>
 
-                        </div>
+                                </div>
+                            </AccordionDetails>
+                        </Accordion></div>
+
+
                     </div>
                     </GrantCard>
                 </div>
@@ -158,7 +178,7 @@ export default function ResourcePage() {
                         reverse={true}
                         imagePriority={false}
                     >
-                        The EHS team at Harvard can help with pre-trip safety planning, risk assessments, safety equipment and procedures, sample permitting documentation, shipping/receiving, and more in relation to field work. If Ocean Scholars ever have any questions about these topics or what else EHS can do to help support their research, please feel free to reach out to <button className={'text-blue-800'} onClick={()=>{copyEmail('chris_caldwell@harvard.edu')}}>Chris Caldwell </button> (Laboratory Safety Services Manager) or their lab’s <a className={'text-blue-800'} href={"https://www.ehs.harvard.edu/safety-officers"} target={"_blank"} rel={"noreferrer"}>Lab Safety Advisor</a>.
+                        The Environmental Health & Safety team at Harvard can help with pre-trip safety planning, risk assessments, safety equipment and procedures, sample permitting documentation, shipping/receiving, and more in relation to field work. If Ocean Scholars ever have any questions about these topics or what else EHS can do to help support their research, please feel free to reach out to <button className={'text-blue-800'} onClick={()=>{copyEmail('chris_caldwell@harvard.edu')}}>Chris Caldwell </button> (Laboratory Safety Services Manager) or their lab’s <a className={'text-blue-800'} href={"https://www.ehs.harvard.edu/safety-officers"} target={"_blank"} rel={"noreferrer"}>Lab Safety Advisor</a>.
 
                     </GrantCard>
                 </div>
