@@ -1,6 +1,6 @@
 import { createClient } from 'contentful'
 import Image from 'next/image'
-// import Skeleton from "../../components/Skeleton";
+import Skeleton from "../../components/Skeleton";
 // import {Parallax} from "react-scroll-parallax";
 import BlogBody from "../../components/BlogBody";
 import Link from 'next/link'
@@ -36,6 +36,8 @@ export const getStaticProps = async ({ params }) => {
         'fields.slug': params.slug
     })
 
+    // console.log(`Building slug: ${params.slug}`)
+
     if (!items.length){
         return {
             redirect: {
@@ -56,7 +58,7 @@ export const getStaticProps = async ({ params }) => {
 
 export default function BlogPost({ project }) {
 
-    // if (!project) return <Skeleton/>
+    if (!project) return <Skeleton/>
 
 
 
