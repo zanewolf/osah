@@ -8,6 +8,7 @@ const  base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.
 const tablePeople = base(process.env.AIRTABLE_PEOPLE_TABLE_NAME)
 const tableCourses = base(process.env.AIRTABLE_COURSES_TABLE_NAME)
 const tableData = base(process.env.AIRTABLE_DATA_TABLE_NAME)
+// const tableNews = base(process.env.AIRTABLE_NEWS_TABLE_NAME)
 
 const getMinifiedRecord=(record)=>{
     // if(!record.fields.Newsletter){
