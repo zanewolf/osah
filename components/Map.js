@@ -1,32 +1,27 @@
 import React from 'react'
-import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
+import {MapContainer, Marker,TileLayer,Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import {FaExternalLinkAlt} from "react-icons/fa";
-import {HiOutlineMail} from 'react-icons/hi'
-import L from 'leaflet';
+import * as L from 'leaflet'
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
+import 'leaflet-defaulticon-compatibility';
+import MarkerClusterGroup from "@changey/react-leaflet-markercluster";
+import {FaExternalLinkAlt} from "react-icons/all";
+import {HiOutlineMail} from "react-icons/hi";
+import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
+import {ExpandMore} from "@material-ui/icons";
 import styled from "styled-components";
-import peIcon from '../public/marker_map_icon_dp.png';
-import comIcon from '../public/marker_map_icon_com.png';
-import humIcon from '../public/marker_map_icon_hum.png';
-import esIcon from '../public/marker_map_icon_es.png';
-import bsIcon from '../public/marker_map_icon_bs.png';
-import enIcon from '../public/marker_map_icon_en.png'
-import oIcon from '../public/marker_map_icon_other.png';
-import { ExpandMore } from '@material-ui/icons';
-import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
-// import {useWindowSize} from "./useWindowSize";
-import MarkerClusterGroup from 'react-leaflet-markercluster'
-// import getLatLon from "./Geocoder";
+import { popupContent, popupHead, popupText, okText } from "./popupStyles";
 
 
-let DefaultIcon = null;
 
-let iconDict = {'Biological Sciences': bsIcon,
-    'Engineering': enIcon,
-    'Environmental Sciences': esIcon,
-    'Humanities':humIcon,
-    'Communications': comIcon,
-    'Policy/Economics': peIcon
+
+let iconDict = {'Biological Sciences': '/marker_map_icon_bs.png',
+    'Engineering': '/marker_map_icon_en.png',
+    'Environmental Sciences': '/marker_map_icon_es.png',
+    'Humanities':'/marker_map_icon_hum.png',
+    'Communications': '/marker_map_icon_com.png',
+    'Policy/Economics': '/marker_map_icon_dp.png',
+    'Cross-Cutting':'/marker_map_icon_other.png'
 }
 
 const fieldColors={
@@ -36,193 +31,186 @@ const fieldColors={
     'Environmental Sciences': '#01477d',
     'Biological Sciences': '#01778c',
     'Engineering': '#52b69a',
-    'Other': '#818588'
+    'Cross-Cutting': '#818588'
 
 }
 let fieldColor;
 
-
-if (typeof window === 'undefined') {
-    DefaultIcon = L.icon({
-        iconUrl: oIcon
-    });
-    L.Marker.prototype.options.icon = DefaultIcon;
-
+function GetIcon(primaryField){
+    let thisIcon = primaryField in iconDict ? iconDict[primaryField] : oIcon
+    // console.log(thisIcon)
+    return L.icon({
+        iconSize: [40,40],
+        iconUrl: thisIcon,
+        iconAnchor: [20,40],
+        shadowUrl: '/marker-shadow.png',
+        shadowAnchor:[12,40]
+        // iconSize: [48]
+    })
 }
 
-// function GetIcon(primaryField){
-//     let thisIcon = primaryField in iconDict ? iconDict[primaryField] : oIcon
-//     // console.log(thisIcon)
-//     return L.icon({
-//         iconSize: [40,40],
-//         iconUrl: thisIcon,
-//         iconAnchor: [10,40]
-//         // iconSize: [48]
-//     })
-// }
 
-// function prepData(data){
-//     // console.log(data)
-//
-//     data.nodes.forEach(node=>{
-//
-//         if (node.data.Latitude && node.data.Longitude){
-//             node.data.Latitude = +node.data.Latitude
-//             node.data.Longitude = +node.data.Longitude
-//             node.data.position=[node.data.Latitude,node.data.Longitude]
-//         } else{
-//
-//             // // console.log(getLatLon(node.data.Main_Location))
-//             // try {
-//             //     getLatLon(node.data.Main_Location)
-//             //         .then(result => {
-//             //             console.log(result)
-//             //             let lat = +result.data.items[0].position.lat
-//             //             let lng = +result.data.items[0].position.lng
-//             //             node.data.position = [lat, lng]
-//             //         })
-//             // } catch(error){
-//             //     console.log('cruisemap error: ',error)
-//             //     node.data.position=[0,0]
-//             //     node.data.Research_Subject=node.data.Research_Subject+" - Location Error"
-//             //     }
-//
-//             node.data.position =[0,0]
-//             node.data.Research_Subject=node.data.Research_Subject+" - Location Error"
-//
-//             // node.data.position = getLatLong(node.data.Main_Location)
-//             //     .then(coords => {console.log(coords); return coords})
-//         }
-//         // node.data.dataIcon = node.data.Data_Available ? FaCheckSquare : FaTimes
-//     })
-//     return data;
-// }
+function prepData(data){
+    // console.log(data)
+
+    data.forEach(node=>{
+        // console.log(node)
+
+        if (node.fields.Latitude && node.fields.Longitude){
+            node.fields.Latitude = +node.fields.Latitude
+            node.fields.Longitude = +node.fields.Longitude
+            node.fields.position=[node.fields.Latitude,node.fields.Longitude]
+        } else{
+
+            // // console.log(getLatLon(node.data.Main_Location))
+            // try {
+            //     getLatLon(node.data.Main_Location)
+            //         .then(result => {
+            //             console.log(result)
+            //             let lat = +result.data.items[0].position.lat
+            //             let lng = +result.data.items[0].position.lng
+            //             node.data.position = [lat, lng]
+            //         })
+            // } catch(error){
+            //     console.log('cruisemap error: ',error)
+            //     node.data.position=[0,0]
+            //     node.data.Research_Subject=node.data.Research_Subject+" - Location Error"
+            //     }
+
+            node.fields.position =[0,0]
+            node.fields.Research_Subject=node.fields.Research_Subject+" - Location Error"
+
+            // node.data.position = getLatLong(node.data.Main_Location)
+            //     .then(coords => {console.log(coords); return coords})
+        }
+        // node.data.dataIcon = node.data.Data_Available ? FaCheckSquare : FaTimes
+    })
+    return data;
+}
 
 
+export default function MapWrapper({data}){
+    // data.forEach(d=>console.log(d))
+    let displayData = prepData(data)
+    // console.log(displayData)
 
 
-
-export default function MapComponent ({data}) {
-
-
-    const copy =  (email) => {
-        navigator.clipboard.writeText(email);
-        alert('Email address copied');
-    }
-
-    // let displayData = prepData(data)
-    // var size = useWindowSize()
-
-    const position = [51.505, -0.09]
 
     return (
-        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <MapContainer
+            center={[0, 0]}
+            noWrap={true}
+            continuousWorld={false}
+            maxBoundsViscosity={1}
+            maxBounds={[[-90, -180],[90, 180]]}
+            tap={false}
+            zoom={2}
+            minZoom={1}
+            tilesize={512}
+            maxZoom={16}
+            scrollWheelZoom={true}
+            style={{
+                height: '80vh',
+                width: '70%',
+                // left:'0',
+                margin:'auto',
+                zIndex: '0'
+                // position: 'sticky'
+            }}>
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
+                url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'
             />
-            <Marker position={position}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
+            <MarkerClusterGroup>
+
+                {displayData.map((node, i) => {
+                    fieldColor = node.fields.Primary_Field in fieldColors ? fieldColors[node.fields.Primary_Field] : '#818588'
+                    return (
+                        <Marker
+                            position={node.fields.position}
+                            key={node.id}
+                            icon={GetIcon(node.fields.Primary_Field)}
+                        >
+                            <Popup className="request-popup">
+                                <div style={popupContent}>
+                                    <img
+                                        src="https://cdn3.iconfinder.com/data/icons/basicolor-arrows-checks/24/149_check_ok-512.png"
+                                        width="150"
+                                        height="150"
+                                        alt="no img"
+                                    />
+                                    <div className="m-2" style={popupHead}>
+                                        Success!
+                                    </div>
+                                    <span style={popupText}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </span>
+                                    <div className="m-2" style={okText}>
+                                        Okay
+                                    </div>
+                                </div>
+                            </Popup>
+                            {/*<StyledPopup bandColor = {fieldColor} >*/}
+                            {/*    <HeaderInfo>*/}
+                            {/*        <h1>{node.fields.Research_Subject}</h1>*/}
+                            {/*        <h2>{node.fields.Year}</h2>*/}
+                            {/*        /!*<h3> {node.data.position}</h3>*!/*/}
+                            {/*        /!*<h4>{node.data.Other_Locations}</h4>*!/*/}
+                            {/*        <h2>{node.fields.People_Involved}</h2>*/}
+                            {/*    </HeaderInfo>*/}
+                            {/*    <hr/>*/}
+                            {/*    <h3>Data Collected: <span>{node.fields.Data_Medium}</span></h3>*/}
+                            {/*    <h3>Research Focus: <span>{node.fields.Research_Focus}</span></h3>*/}
+
+                            {/*    <h3>Data available: {node.fields.Data_Available === 'Public'?*/}
+                            {/*        <a href={node.fields.Data_Link} target={"_blank"} rel={'noreferrer'} >Public Link <FaExternalLinkAlt/></a>*/}
+                            {/*        :*/}
+                            {/*        node.fields.Data_Available === 'Upon Request' ?*/}
+                            {/*            <EmailButton*/}
+                            {/*                aria-label={"Copy Email Button"}*/}
+                            {/*                onClick={()=>copy(node.fields.Data_Email)}>Email Me</EmailButton>*/}
+                            {/*            :*/}
+                            {/*            'Not Yet'*/}
+                            {/*    }*/}
+                            {/*    </h3>*/}
+
+                            {/*    <hr/>*/}
+                            {/*    {node.fields.Other_Locations && <Accordion>*/}
+
+                            {/*        <AccordionSummary expandIcon={<ExpandMore/>}>*/}
+                            {/*            OTHER LOCATIONS*/}
+                            {/*        </AccordionSummary>*/}
+
+                            {/*        <AccordionDetails>*/}
+                            {/*            {node.fields.Other_Locations}*/}
+                            {/*        </AccordionDetails>*/}
+
+                            {/*    </Accordion>*/}
+                            {/*    }*/}
+                            {/*    {node.fields.About && <Accordion>*/}
+
+                            {/*        <AccordionSummary expandIcon={<ExpandMore/>}>*/}
+                            {/*            ABOUT*/}
+                            {/*        </AccordionSummary>*/}
+
+                            {/*        <AccordionDetails>*/}
+                            {/*            {node.fields.About}*/}
+                            {/*        </AccordionDetails>*/}
+
+                            {/*    </Accordion>*/}
+                            {/*    }*/}
+                            {/*</StyledPopup>*/}
+                        </Marker>
+                    )
+                })}
+            </MarkerClusterGroup>
         </MapContainer>
-
-
-        // <MapPage>
-        //     <MapContainer
-        //         center={[0, 0]}
-        //         noWrap={true}
-        //         continuousWorld={false}
-        //         maxBoundsViscosity={1}
-        //         // maxBounds={[[-90, -180],[90, 180]]}
-        //         tap={false}
-        //         zoom={2}
-        //         minZoom={1}
-        //         tilesize={size.width > 1045? 512: 256}
-        //         maxZoom={16}
-        //         scrollWheelZoom={true}
-        //         style={{
-        //             height: size.width > 1045 ? `82vh`: '79vh',
-        //             width: '100%',
-        //             float: 'bottom',
-        //             zIndex: '0',
-        //             margin: size.width > 1045 ? `auto`: 'auto auto auto auto',
-        //             // position: 'sticky'
-        //         }}>
-        //         <TileLayer
-        //             attribution='Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
-        //             url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'
-        //         />
-        //         <MarkerClusterGroup>
-        //
-        //             {displayData.nodes.map((node, i) => {
-        //                 fieldColor = node.data.Primary_Field in fieldColors ? fieldColors[node.data.Primary_Field] : '#818588'
-        //                 return (
-        //                     <Marker
-        //                         position={node.data.position}
-        //                         key={node.id}
-        //                         icon={GetIcon(node.data.Primary_Field)}
-        //                     >
-        //                         {/*<ResponsivePopup/>*/}
-        //                         <StyledPopup bandColor = {fieldColor} size={size}>
-        //                             <HeaderInfo>
-        //                                 <h1>{node.data.Research_Subject}</h1>
-        //                                 <h2>{node.data.Year}</h2>
-        //                                 {/*<h3> {node.data.position}</h3>*/}
-        //                                 {/*<h4>{node.data.Other_Locations}</h4>*/}
-        //                                 <h2>{node.data.People_Involved}</h2>
-        //                             </HeaderInfo>
-        //                             <hr/>
-        //                             <h3>Data Collected: <span>{node.data.Data_Medium}</span></h3>
-        //                             <h3>Research Focus: <span>{node.data.Research_Focus}</span></h3>
-        //
-        //                             <h3>Data available: {node.data.Data_Available === 'Public'?
-        //                                 <a href={node.data.Data_Link} target={"_blank"} rel={'noreferrer'} >Public Link <FaExternalLinkAlt/></a>
-        //                                 :
-        //                                 node.data.Data_Available === 'Upon Request' ?
-        //                                     <EmailButton
-        //                                         aria-label={"Copy Email Button"}
-        //                                         onClick={()=>copy(node.data.Data_Email)}>Email Me <HiOutlineMail/></EmailButton>
-        //                                     :
-        //                                     'Not Yet'
-        //                             }
-        //                             </h3>
-        //
-        //                             <hr/>
-        //                             {node.data.Other_Locations && <Accordion>
-        //
-        //                                 <AccordionSummary expandIcon={<ExpandMore/>}>
-        //                                     OTHER LOCATIONS
-        //                                 </AccordionSummary>
-        //
-        //                                 <AccordionDetails>
-        //                                     {node.data.Other_Locations}
-        //                                 </AccordionDetails>
-        //
-        //                             </Accordion>
-        //                             }
-        //                             {node.data.About && <Accordion>
-        //
-        //                                 <AccordionSummary expandIcon={<ExpandMore/>}>
-        //                                     ABOUT
-        //                                 </AccordionSummary>
-        //
-        //                                 <AccordionDetails>
-        //                                     {node.data.About}
-        //                                 </AccordionDetails>
-        //
-        //                             </Accordion>
-        //                             }
-        //                         </StyledPopup>
-        //                     </Marker>
-        //                 )
-        //             })}
-        //         </MarkerClusterGroup>
-        //     </MapContainer>
-        // </MapPage>
     )
 }
+
 
 const MapPage = styled.div`
   height: 100%;
@@ -292,18 +280,19 @@ const StyledPopup = styled(Popup)`
   display:flex;
   flex-flow: column nowrap;
   gap: 10px;
+  z-index:10;
 
   
   span{font-weight: lighter}
   
-  .leaflet-popup leaflet-popup-content-wrapper{
-    width: 30vw;
-  }
-  
-  .leaflet-popup-content{
-    width: 90% !important;
-
-  }
+  //.leaflet-popup leaflet-popup-content-wrapper{
+  //  width: 30vw;
+  //}
+  //
+  //.leaflet-popup-content{
+  //  width: 90% !important;
+  //
+  //}
   
 `
 

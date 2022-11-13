@@ -85,7 +85,7 @@ export default function BlogPost({ project }) {
                         // height={featuredImage.fields.file.details.image.height}
                     />
                     <div className={'absolute h-full w-full bg-gradient-to-t from-black/90'}></div>
-                    <div className={'absolute text-6xl md:text-8xl mt-4 md:mt-0 md:pb-3 w-full h-full flex justify-center text-center place-items-end m-auto'}>{title}</div>
+                    <div className={'absolute text-6xl md:text-8xl  w-full h-full flex justify-center text-center place-items-end m-auto'}>{title}</div>
                 </div>
             {/*</Parallax>*/}
 

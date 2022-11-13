@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/runtime": "^7.20.1",
+    "@changey/react-leaflet-markercluster": "^4.0.0-rc1",
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "@contentful/rich-text-types": "^15.13.2",
     "@headlessui/react": "^1.7.4",
@@ -22,6 +24,9 @@
     "boring-avatars": "^1.7.0",
     "contentful": "^9.2.11",
     "leaflet": "^1.9.2",
+    "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet-geosearch": "^3.7.0",
+    "leaflet.markercluster": "^1.5.3",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.4",
@@ -31,6 +36,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-leaflet": "^4.1.0",
+    "react-leaflet-enhanced-marker": "^1.0.21",
+    "react-leaflet-marker-layer": "^0.1.4",
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-modal": "^3.15.1",
     "react-moment": "^1.1.2",
