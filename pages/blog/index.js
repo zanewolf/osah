@@ -19,6 +19,12 @@ export async function getStaticProps(){
 export default function Blog({content}) {
     const [blogs, setBlogs] = useState(content);
 
+
+    const copy =  (email) => {
+        navigator.clipboard.writeText(email);
+        alert('Email address copied');
+    }
+
     return (
         <>
             <SectionHero image={ocean3} imageposition={'center'} imageheight={'30vh'}>
@@ -27,14 +33,24 @@ export default function Blog({content}) {
                 </div>
             </SectionHero>
             <div className={''}>
-                <div className={'min-h-[50vh] w-auto h-auto flex flex-wrap gap-4 mb-16 mt-16 justify-center text-black'}>
-                    {blogs.map((blog,i)=>{
+                <div className={'min-h-[50vh] w-auto h-auto flex flex-nowrap gap-4 my-16 mx-8 justify-evenly text-black'}>
+                   <div className={'flex flex-wrap justify-around gap-10'}>
+                       {blogs.map((blog,i)=>{
                         return <BlogCard content={blog} key={i}/>
                     })}
-                    {/*<Timeline*/}
-                    {/*    dataSource={{ sourceType: "profile", screenName: "HUCEnvironment" }}*/}
-                    {/*    options={{ width: "400", height: "600" }}*/}
-                    {/*/>*/}
+                   </div>
+                    <div className={'h-full w-[3px] bg-black'}></div>
+                    <div className={'w-1/4 flex flex-col flex-nowrap gap-5'}>
+                        <Timeline
+                            dataSource={{ sourceType: "profile", screenName: "OceanScholars" }}
+                            options={{ width: "400", height: "600" }}
+                        />
+                        <div className={'font-bold bg-blue-500 rounded-xl text-lg text-center text-white'} >
+                            <button onClick={()=>copy('oceans@fas.harvard.edu')}>Have news you want to share with the community? Email us!
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
