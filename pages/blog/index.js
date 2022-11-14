@@ -33,18 +33,19 @@ export default function Blog({content}) {
                 </div>
             </SectionHero>
             <div className={''}>
-                <div className={'min-h-[50vh] w-auto h-auto flex flex-nowrap gap-4 my-16 mx-8 justify-evenly text-black'}>
-                   <div className={'flex flex-wrap justify-around gap-10'}>
+                <div className={'min-h-[50vh] h-auto flex flex-wrap gap-4 my-16 mx-8 text-black'}>
+                   <div className={'flex flex-wrap justify-evenly gap-10 min-w-[60vw] '}>
                        {blogs.map((blog,i)=>{
                         return <BlogCard content={blog} key={i}/>
                     })}
                    </div>
-                    <div className={'h-full w-[3px] bg-black'}></div>
-                    <div className={'w-1/4 flex flex-col flex-nowrap gap-5'}>
-                        <Timeline
-                            dataSource={{ sourceType: "profile", screenName: "OceanScholars" }}
-                            options={{ width: "400", height: "600" }}
-                        />
+                    <div className={'flex flex-col flex-nowrap gap-5 justify-center w-[340px] justify-center m-auto md:ml-auto border-gray-700 p-4 border-4 rounded-xl'}>
+                        <div className={''}>
+                            <Timeline
+                                dataSource={{ sourceType: "profile", screenName: "OceanScholars" }}
+                                options={{ width: "400", height: "600" }}
+                            />
+                        </div>
                         <div className={'font-bold bg-blue-500 rounded-xl text-lg text-center text-white'} >
                             <button onClick={()=>copy('oceans@fas.harvard.edu')}>Have news you want to share with the community? Email us!
                             </button>
