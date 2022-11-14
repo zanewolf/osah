@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import {MapContainer, Marker,TileLayer,Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet'
@@ -11,6 +11,7 @@ import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 import {ExpandMore} from "@material-ui/icons";
 import styled from "styled-components";
 import { popupContent, popupHead, popupText, okText } from "./popupStyles";
+
 
 
 
@@ -90,124 +91,161 @@ function prepData(data){
 
 
 export default function MapWrapper({data}){
-    // data.forEach(d=>console.log(d))
     let displayData = prepData(data)
-    // console.log(displayData)
 
+    const copy =  (email) => {
+        navigator.clipboard.writeText(email);
+        alert('Email address copied');
+    }
 
 
     return (
-        <MapContainer
-            center={[0, 0]}
-            noWrap={true}
-            continuousWorld={false}
-            maxBoundsViscosity={1}
-            maxBounds={[[-90, -180],[90, 180]]}
-            tap={false}
-            zoom={2}
-            minZoom={1}
-            tilesize={512}
-            maxZoom={16}
-            scrollWheelZoom={true}
-            style={{
-                height: '80vh',
-                width: '70%',
-                // left:'0',
-                margin:'auto',
-                zIndex: '0'
-                // position: 'sticky'
-            }}>
-            <TileLayer
-                attribution='Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
-                url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'
-            />
-            <MarkerClusterGroup>
+        <div className={'m-auto items-center'}>
+            <MapContainer
+                center={[0, 0]}
+                noWrap={true}
+                continuousWorld={false}
+                maxBoundsViscosity={1}
+                maxBounds={[[-90, -180],[90, 180]]}
+                tap={false}
+                zoom={2}
+                minZoom={1}
+                tilesize={512}
+                maxZoom={16}
+                scrollWheelZoom={true}
+                style={{
+                    height: '75vh',
+                    width: '100vw'
+                }}>
+                <TileLayer
+                    attribution='Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
+                    url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'
+                />
+                <MarkerClusterGroup>
 
-                {displayData.map((node, i) => {
-                    fieldColor = node.fields.Primary_Field in fieldColors ? fieldColors[node.fields.Primary_Field] : '#818588'
-                    return (
-                        <Marker
-                            position={node.fields.position}
-                            key={node.id}
-                            icon={GetIcon(node.fields.Primary_Field)}
-                        >
-                            <Popup className="request-popup">
-                                <div style={popupContent}>
-                                    <img
-                                        src="https://cdn3.iconfinder.com/data/icons/basicolor-arrows-checks/24/149_check_ok-512.png"
-                                        width="150"
-                                        height="150"
-                                        alt="no img"
-                                    />
-                                    <div className="m-2" style={popupHead}>
-                                        Success!
+                    {displayData.map((node, i) => {
+                        fieldColor = node.fields.Primary_Field in fieldColors ? fieldColors[node.fields.Primary_Field] : '#818588'
+                        return (
+                            <Marker
+                                position={node.fields.position}
+                                key={node.id}
+                                icon={GetIcon(node.fields.Primary_Field)}
+                            >
+                                <Popup className="request-popup" autoClose={false}
+                                >
+                                    <div className={'text-center min-h-[100px] h-auto md:max-h-[60vh] md:w-[300px] w-[250px] mt-3'}>
+                                        <div className={'flex flex-col flex-nowrap m-auto text-center'}>
+                                            <span className={'text-xl font-bold border-b-2 border-black mb-2'}>{node.fields.Research_Subject}</span>
+                                            <span className={'text-lg'}>{node.fields.Year}</span>
+                                            {/*<h3> {node.data.position}</h3>*/}
+                                            {/*<h4>{node.data.Other_Locations}</h4>*/}
+                                            <span className={'text-lg'}>{node.fields.People_Involved}</span>
+                                        </div>
+                                        <hr/>
+                                        <div className={'text-left py-2'}>
+                                            <h3><span className={'font-bold'}>Data Collected:</span> <span>{node.fields.Data_Medium}</span></h3>
+                                            <h3><span className={'font-bold'}>Data available:</span> {node.fields.Data_Available === 'Public'?
+                                                <a href={node.fields.Data_Link} target={"_blank"} rel={'noreferrer'} >Public Link <FaExternalLinkAlt/></a>
+                                                :
+                                                node.fields.Data_Available === 'Upon Request' ?
+                                                    <EmailButton
+                                                        aria-label={"Copy Email Button"}
+                                                        onClick={()=>copy(node.fields.Data_Email)}>Contact the Scholar </EmailButton>
+                                                    :
+                                                    'Not Yet'
+                                            }
+                                            </h3>
+                                            <h3><span className={'font-bold'}>Research Focus:</span> <span>{node.fields.Research_Focus}</span></h3>
+
+
+
+                                        </div>
+
+                                        <hr/>
+                                        {node.fields.Other_Locations && <Accordion animation={false}>
+
+                                            <AccordionSummary expandIcon={<ExpandMore/>}>
+                                                OTHER LOCATIONS
+                                            </AccordionSummary>
+
+                                            <AccordionDetails>
+                                                {node.fields.Other_Locations}
+                                            </AccordionDetails>
+
+                                        </Accordion>
+                                        }
+                                        {node.fields.About && <Accordion>
+
+                                            <AccordionSummary expandIcon={<ExpandMore/>}>
+                                                ABOUT
+                                            </AccordionSummary>
+
+                                            <AccordionDetails>
+                                                <span className={'text-left'}>{node.fields.About}</span>
+                                            </AccordionDetails>
+
+                                        </Accordion>
+                                        }
                                     </div>
-                                    <span style={popupText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </span>
-                                    <div className="m-2" style={okText}>
-                                        Okay
-                                    </div>
-                                </div>
-                            </Popup>
-                            {/*<StyledPopup bandColor = {fieldColor} >*/}
-                            {/*    <HeaderInfo>*/}
-                            {/*        <h1>{node.fields.Research_Subject}</h1>*/}
-                            {/*        <h2>{node.fields.Year}</h2>*/}
-                            {/*        /!*<h3> {node.data.position}</h3>*!/*/}
-                            {/*        /!*<h4>{node.data.Other_Locations}</h4>*!/*/}
-                            {/*        <h2>{node.fields.People_Involved}</h2>*/}
-                            {/*    </HeaderInfo>*/}
-                            {/*    <hr/>*/}
-                            {/*    <h3>Data Collected: <span>{node.fields.Data_Medium}</span></h3>*/}
-                            {/*    <h3>Research Focus: <span>{node.fields.Research_Focus}</span></h3>*/}
 
-                            {/*    <h3>Data available: {node.fields.Data_Available === 'Public'?*/}
-                            {/*        <a href={node.fields.Data_Link} target={"_blank"} rel={'noreferrer'} >Public Link <FaExternalLinkAlt/></a>*/}
-                            {/*        :*/}
-                            {/*        node.fields.Data_Available === 'Upon Request' ?*/}
-                            {/*            <EmailButton*/}
-                            {/*                aria-label={"Copy Email Button"}*/}
-                            {/*                onClick={()=>copy(node.fields.Data_Email)}>Email Me</EmailButton>*/}
-                            {/*            :*/}
-                            {/*            'Not Yet'*/}
-                            {/*    }*/}
-                            {/*    </h3>*/}
 
-                            {/*    <hr/>*/}
-                            {/*    {node.fields.Other_Locations && <Accordion>*/}
+                                </Popup>
+                                {/*<StyledPopup bandColor = {fieldColor} >*/}
+                                {/*    <HeaderInfo>*/}
+                                {/*        <h1>{node.fields.Research_Subject}</h1>*/}
+                                {/*        <h2>{node.fields.Year}</h2>*/}
+                                {/*        /!*<h3> {node.data.position}</h3>*!/*/}
+                                {/*        /!*<h4>{node.data.Other_Locations}</h4>*!/*/}
+                                {/*        <h2>{node.fields.People_Involved}</h2>*/}
+                                {/*    </HeaderInfo>*/}
+                                {/*    <hr/>*/}
+                                {/*    <h3>Data Collected: <span>{node.fields.Data_Medium}</span></h3>*/}
+                                {/*    <h3>Research Focus: <span>{node.fields.Research_Focus}</span></h3>*/}
 
-                            {/*        <AccordionSummary expandIcon={<ExpandMore/>}>*/}
-                            {/*            OTHER LOCATIONS*/}
-                            {/*        </AccordionSummary>*/}
+                                {/*    <h3>Data available: {node.fields.Data_Available === 'Public'?*/}
+                                {/*        <a href={node.fields.Data_Link} target={"_blank"} rel={'noreferrer'} >Public Link <FaExternalLinkAlt/></a>*/}
+                                {/*        :*/}
+                                {/*        node.fields.Data_Available === 'Upon Request' ?*/}
+                                {/*            <EmailButton*/}
+                                {/*                aria-label={"Copy Email Button"}*/}
+                                {/*                onClick={()=>copy(node.fields.Data_Email)}>Email Me</EmailButton>*/}
+                                {/*            :*/}
+                                {/*            'Not Yet'*/}
+                                {/*    }*/}
+                                {/*    </h3>*/}
 
-                            {/*        <AccordionDetails>*/}
-                            {/*            {node.fields.Other_Locations}*/}
-                            {/*        </AccordionDetails>*/}
+                                {/*    <hr/>*/}
+                                {/*    {node.fields.Other_Locations && <Accordion>*/}
 
-                            {/*    </Accordion>*/}
-                            {/*    }*/}
-                            {/*    {node.fields.About && <Accordion>*/}
+                                {/*        <AccordionSummary expandIcon={<ExpandMore/>}>*/}
+                                {/*            OTHER LOCATIONS*/}
+                                {/*        </AccordionSummary>*/}
 
-                            {/*        <AccordionSummary expandIcon={<ExpandMore/>}>*/}
-                            {/*            ABOUT*/}
-                            {/*        </AccordionSummary>*/}
+                                {/*        <AccordionDetails>*/}
+                                {/*            {node.fields.Other_Locations}*/}
+                                {/*        </AccordionDetails>*/}
 
-                            {/*        <AccordionDetails>*/}
-                            {/*            {node.fields.About}*/}
-                            {/*        </AccordionDetails>*/}
+                                {/*    </Accordion>*/}
+                                {/*    }*/}
+                                {/*    {node.fields.About && <Accordion>*/}
 
-                            {/*    </Accordion>*/}
-                            {/*    }*/}
-                            {/*</StyledPopup>*/}
-                        </Marker>
-                    )
-                })}
-            </MarkerClusterGroup>
-        </MapContainer>
+                                {/*        <AccordionSummary expandIcon={<ExpandMore/>}>*/}
+                                {/*            ABOUT*/}
+                                {/*        </AccordionSummary>*/}
+
+                                {/*        <AccordionDetails>*/}
+                                {/*            {node.fields.About}*/}
+                                {/*        </AccordionDetails>*/}
+
+                                {/*    </Accordion>*/}
+                                {/*    }*/}
+                                {/*</StyledPopup>*/}
+                            </Marker>
+                        )
+                    })}
+                </MarkerClusterGroup>
+            </MapContainer>
+        </div>
     )
 }
 

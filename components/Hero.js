@@ -22,7 +22,7 @@ export default function Hero ({image,imagealt,imageposition,imageheight,children
                 // position={'relative'}
             />
 
-            <div className={styles.heroContent}>
+            <div className={styles.sectionHeroContent}>
                 {children}
             </div>
         </section>

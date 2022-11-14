@@ -39,7 +39,7 @@ export default function Home() {
   return (
       <div className={'homePage'} >
           <Hero image={ocean3} imagealt={'Background image of water surface with color light rays'} imageposition={'center'}>
-              <div className="title text-4xl xl:text-6xl m-12 relative text-white font-bold text-center drop-shadow-xl shadow-black">
+              <div className="pt-44 md:pt-0 justify-center text-4xl xl:text-6xl m-12 relative text-white font-bold text-center drop-shadow-xl shadow-black">
                   Ocean Scholars @ Harvard University
               </div>
               <div className="joinbutton z-1 relative ">

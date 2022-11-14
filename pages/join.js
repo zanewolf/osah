@@ -19,13 +19,13 @@ export default function JoinPage() {
     return (
         <div>
             <Hero image={ocean3} imageposition={'center'}>
-                <div className={'flex flex-col flex-nowrap justify-between m-auto min-h-[70vh] h-auto gap-16'}>
+                <div className={'pt-32 md:pt-0 flex flex-col flex-nowrap justify-between m-auto min-h-[70vh] h-auto gap-16 pb-8'}>
                     <div className={'flex flex-row flex-nowrap justify-evenly gap-10 m-auto'}>
                         <div className={'flex flex-col flex-nowrap bg-opacity-30 backdrop-blur-sm drop-shadow-2xl bg-black w-[35vw] h-[15vh] md:w-[20vw] md:h-[30vh] mt-[2vh] rounded-2xl'}>
                             <div className={'pt-3 md:pt-6 text-center text-3xl lg:text-5xl uppercase m-auto'}>
-                                <p className={'drop-shadow-xl shadow-black'}>Scholar</p>
+                                <p className={'drop-shadow-xl shadow-black font-bold'}>Scholar</p>
                             </div>
-                            <button className={'m-auto text-white text-5xl hover:scale-110'} as={'a'} aria-label={"Join Button"}
+                            <button className={'m-auto text-white text-[4rem] md:text-[8rem] hover:scale-110'} as={'a'} aria-label={"Join Button"}
                                         onClick={(e)=>{
                                             e.preventDefault()
                                             window.open(airTableForm);}}>
@@ -34,9 +34,9 @@ export default function JoinPage() {
                         </div>
                         <div className={'flex flex-col flex-nowrap bg-opacity-30  backdrop-blur-sm drop-shadow-2xl bg-black w-[35vw] h-[15vh] md:w-[20vw] md:h-[30vh] mt-[2vh] rounded-2xl'}>
                             <div className={'pt-3 md:pt-6 text-center text-3xl lg:text-5xl uppercase m-auto'}>
-                                <p className={'drop-shadow-xl shadow-black'}>Data</p>
+                                <p className={'drop-shadow-xl shadow-black font-bold'}>Data</p>
                             </div>
-                            <button className={'m-auto text-white text-5xl hover:scale-110'} as={'a'}
+                            <button className={'m-auto text-white text-[4rem] md:text-[8rem] hover:scale-110'} as={'a'}
                                         aria-label={"Join Button"} onClick={(e)=>{
                                 e.preventDefault()
                                 window.open(airtableDataForm);}}>
@@ -48,12 +48,13 @@ export default function JoinPage() {
                         <p>
                             Welcome! As you fill out these forms, we ask that you think about how you and your work aligns with broad areas of work, which we call &quot;primary fields&quot;: Environmental Sciences, Biological Sciences, Engineering, Humanities, Policy/Economics, Communications, and Cross-Cutting Fields. You might feel your specific disciplines, or sub-fields, intersect two or more primary fields, or that you fit into none of them. That&apos;s totally okay (and awesome)! Select the primary field you think is best. If you&apos;d like to see some examples or edge-cases, check out our guide below.
                         </p>
-                        <div className={'bg-blue-600 w-[20vw] p-3 rounded-3xl hover:scale-110 relative m-auto text-center text-2xl'}>
+                        <div className={'bg-white w-[70vw] md:w-[20vw] p-3 rounded-3xl hover:scale-110 relative m-auto text-center '}>
                             <a
                                 href="/primary_field_guide.pdf"
                                 alt="alt text"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className={'text-black font-bold text-2xl'}
                                 >Primary Field Guide</a>
                         </div>
 

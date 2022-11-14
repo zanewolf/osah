@@ -1,7 +1,9 @@
 const popupContent = {
-    textAlign: "center",
-    height: "350px",
-    marginTop: "30px"
+    // textAlign: "center",
+    // minHeight: "100px",
+    // height:"auto",
+    // width:"300px",
+    // marginTop: "30px"
 };
 const popupHead = {
     fontWeight: "bold",

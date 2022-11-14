@@ -114,15 +114,16 @@ export default function DataMap({content}) {
     },[])
 
     const updateDimensions = () => {
-        if (typeof window !== 'undefined') {
+        // if (typeof window !== 'undefined') {
             window.innerWidth > 1024 ? setButtonText('Add Data') : setButtonText('+');
-        }
+        // }
     }
 
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
         return () => window.removeEventListener("resize", updateDimensions);
-    }, )
+    },[] )
+
     return (
         <div>
             <SectionHero image={ocean3} imageposition={'center'} imageheight={'30vh'}>
