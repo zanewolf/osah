@@ -5,13 +5,19 @@ import {FiGithub} from "react-icons/fi";
 import {HiOutlineMail} from "react-icons/hi";
 
 const Footer = () => {
+
+    const copy =  (email) => {
+        navigator.clipboard.writeText(email);
+        alert('Email address copied');
+    }
+
     return (
         <footer>
             <section className="flex flex-col flex-nowrap justify-center mb-8">
                 {/*<div className="text-2xl m-auto">follow or contact me</div>*/}
                 <div className="icons flex flex-row justify-center text-2xl md:text-7xl gap-12 md:gap-24 mt-4">
                     <div className={"twitter hover:scale-110 duration-200"}>
-                        <Link href={'https://twitter.com/inzaneresearch'} passHref>
+                        <Link href={'https://twitter.com/OceanScholars'} passHref>
                             <a target={"_blank"} referrer={'noreferrer'}>
                                 <AiOutlineTwitter />
                             </a>
@@ -31,7 +37,7 @@ const Footer = () => {
                     {/*        </a>*/}
                     {/*    </Link>*/}
                     {/*</div>*/}
-                    <div className={'email hover:scale-110 duration-200'}  onClick={()=>copy()}>
+                    <div className={'email hover:scale-110 duration-200'}  onClick={()=>copy('oceans@fas.harvard.edu')}>
                         {/*<Link href={'https://twitter.com/inzaneresearch'} passHref>*/}
                         {/*<a target={"_blank"} referrer={'noreferrer'}>*/}
                         <HiOutlineMail/>

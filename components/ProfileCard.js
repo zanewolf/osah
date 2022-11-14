@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Image from "next/image";
 import {FaExternalLinkAlt,FaEnvelope,FaTimes} from "react-icons/fa";
 import Avatar from "boring-avatars";
@@ -58,12 +58,14 @@ const customStyles = {
     }
 };
 export default function ProfileCard({profile,index}) {
-    const [modalState, setModalState] = React.useState(false)
+    const [modalState, setModalState] = useState(false)
+    const [image,setImage] = useState(profile.fields.ImageAttachment ? true : false)
 
     let profileImage = profile.fields.ImageAttachment ? profile.fields.ImageAttachment[0].url : null;
 
     fieldColor = profile.fields.Primary_Field in fieldColors ? fieldColors[profile.fields.Primary_Field] : '800'
     let colors = paletteColors.filter(d=>d!==fieldColor)
+
 
     const copy =  (email) => {
         console.log(email)
@@ -81,14 +83,14 @@ export default function ProfileCard({profile,index}) {
     return (
         <>
             <div className={`profileCard shadow-xl relative w-[300px] h-[450px]  rounded-xl m-1 sm:m-3 flex flex-col flex-nowrap text-center m-auto `}>
-                <div className={`colorHeader relative z-0 h-[20%] rounded-t-lg py-1 ${fieldColor === '#351431' ? 'bg-split-100' :
+                <div className={`colorHeader relative z-0 h-32 rounded-t-lg py-1 ${fieldColor === '#351431' ? 'bg-split-100' :
                     fieldColor === '#823c3a' ? 'bg-split-200' :
                         fieldColor === '#f5a578' ? 'bg-split-300' :
                             fieldColor === '#002d50' ? 'bg-split-400' :
                                 fieldColor === '#01778c' ? 'bg-split-500' :
                                     fieldColor === '#52b69a' ? 'bg-split-600' : 'bg-split-700' }`}>
-                    <div className="imageContainer z-0 m-auto w-20 h-20 overflow-hidden rounded-full">
-                        {profileImage ?
+                    <div className="imageContainer z-0 ml-auto mr-auto my-2 w-24 h-24 overflow-hidden rounded-full">
+                        {image ?
                             <Image
                                 loader={myLoader}
                                 className={'image'}
@@ -99,11 +101,12 @@ export default function ProfileCard({profile,index}) {
                                 width={225}
                                 height={300}
                                 priority = {index < 10 ? true : false}
+                                onError={()=>setImage(false)}
                             />
                             :
-                            <div className="avatarWrapper -translate-x-4 -translate-y-2">
+                            <div className="avatarWrapper -translate-x-1 md:-translate-x-4 -translate-y-2">
                                 <Avatar
-                                    size={'11vh'}
+                                    size={'12vh'}
                                     name={profile.fields.Name}
                                     variant="beam"
                                     colors={colors}
@@ -113,11 +116,12 @@ export default function ProfileCard({profile,index}) {
                     </div>
 
                 </div>
-                <div className="profileName pt-4 h-[10%] md:h-[30%] text-2xl lg:text-3xl font-bold">
-                    {profile.fields.Name}
-                </div>
+
                 {/*<div className={'m-auto justify-center w-[80%] bg-black h-[2px] m-2'}></div>*/}
-                <div className="profileTitles h-[10%] px-1 text-md lg:text-lg h-1/4 md:h-1/3 flex flex-col flex-nowrap justify-start">
+                <div className="profileTitles px-1 text-lg h-32 flex flex-col flex-nowrap justify-evenly">
+                    <div className="profileName m-2 h-auto text-3xl font-bold">
+                        {profile.fields.Name}
+                    </div>
                     <div className="profileLocation font-bold">
                         {profile.fields.Affiliations.split(",")[0]}
                     </div>
@@ -125,8 +129,8 @@ export default function ProfileCard({profile,index}) {
                         {profile.fields.Title}
                     </div>
                 </div>
-                <div className="primaryFields text-md h-[40%] m-auto flex flex-col flex-nowrap justify-end md:justify-start">
-                    <div className="primaryField underline">
+                <div className="primaryFields text-md h-44 m-auto flex flex-col flex-nowrap justify-end pb-4">
+                    <div className="primaryField underline pb-1 uppercase">
                         {profile.fields.Primary_Field}
                     </div>
                     <div className="secondaryField font-light">

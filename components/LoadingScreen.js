@@ -125,7 +125,6 @@ const LoadingScreen = () => {
 
     let backgroundColor = paletteColors[Math.floor(Math.random() * paletteColors.length)];
 
-    console.log(backgroundColor)
     return (
         <Screen>
             <Circle backgroundColor = {backgroundColor}>

@@ -10,6 +10,7 @@ import {HiOutlineMail} from "react-icons/hi";
 import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 import {ExpandMore} from "@material-ui/icons";
 import styled from "styled-components";
+import "leaflet-loading"
 import { popupContent, popupHead, popupText, okText } from "./popupStyles";
 
 
@@ -113,9 +114,12 @@ export default function MapWrapper({data}){
                 tilesize={512}
                 maxZoom={16}
                 scrollWheelZoom={true}
+                // @ts-ignore
+                loadingControl={true}
                 style={{
                     height: '75vh',
-                    width: '100vw'
+                    width: '100vw',
+                    zIndex:'0'
                 }}>
                 <TileLayer
                     attribution='Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
