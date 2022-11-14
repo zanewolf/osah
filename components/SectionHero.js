@@ -16,6 +16,7 @@ export default function SectionHero ({image,imageposition,imageheight,children})
                     layout={'fill'}
                     objectFit={'cover'}
                     objectPosition={imageposition}
+                    placeholder="blur"
                     // position={'relative'}
                 />
             {/*</div>*/}

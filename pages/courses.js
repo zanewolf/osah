@@ -4,6 +4,7 @@ import SectionHero from "../components/SectionHero";
 import {tableCourses,getData} from "./api/utils/Airtable";
 import CourseList from "../components/CourseList";
 import { useRouter } from 'next/router'
+import ocean3 from '../public/ocean3.jpg'
 
 export async function getStaticProps(){
     const courses = await getData(tableCourses);
@@ -49,7 +50,7 @@ export default function Courses({content}) {
 
     return (
         <>
-            <SectionHero image={rocky} imageheight={'30vh'} imageposition={'right'} priority={true}>
+            <SectionHero image={ocean3} imageheight={'30vh'} imageposition={'right'} priority={true}>
                 <div className={'text-2xl lg:text-5xl font-bold drop-shadow-xl shadow-black mb-8 mt-16 text-center'}>Undergraduate Marine-Related Courses
                 </div>
             </SectionHero>
