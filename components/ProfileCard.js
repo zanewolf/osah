@@ -123,7 +123,7 @@ export default function ProfileCard({profile,index}) {
                         {profile.fields.Name}
                     </div>
                     <div className="profileLocation font-bold">
-                        {profile.fields.Affiliations.split(",")[0]}
+                        {profile.fields.Affiliations?.split(",")[0]}
                     </div>
                     <div className="profileTitle m-2">
                         {profile.fields.Title}
@@ -134,7 +134,7 @@ export default function ProfileCard({profile,index}) {
                         {profile.fields.Primary_Field}
                     </div>
                     <div className="secondaryField font-light">
-                        {profile.fields.Secondary_Fields.split(',').splice(0,4).map((secondary,i)=>{
+                        {profile.fields.Secondary_Fields?.split(',').splice(0,4).map((secondary,i)=>{
                             return <div key={i}>{secondary}</div>
                         })}
                     </div>
@@ -247,7 +247,7 @@ export default function ProfileCard({profile,index}) {
                                 <p className={'uppercase text-xl'}>{profile.fields.Primary_Field}</p>
                                 <hr style={{color: fieldColor}}/>
                                 <ul>
-                                    {profile.fields.Secondary_Fields.split(',').map((d, i) => {
+                                    {profile.fields.Secondary_Fields?.split(',').map((d, i) => {
                                         return (
                                             <li key={i}>
                                                 <h6>{d}</h6>
