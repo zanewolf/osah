@@ -134,7 +134,7 @@ export default function ProfileCard({profile,index}) {
                         {profile.fields.Primary_Field}
                     </div>
                     <div className="secondaryField font-light">
-                        {profile.fields.Secondary_Fields.split(',').map((secondary,i)=>{
+                        {profile.fields.Secondary_Fields.split(',').splice(0,4).map((secondary,i)=>{
                             return <div key={i}>{secondary}</div>
                         })}
                     </div>
