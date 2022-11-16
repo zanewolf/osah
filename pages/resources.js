@@ -170,7 +170,7 @@ export default function ResourcePage() {
                         reverse={false}
                         imagePriority={false}
                     >
-                        PIs, please <button className={'text-blue-800'} onClick={()=>{copyEmail('oceans@fas.harvard.edu')}}>email us</button> if you are seeking students interested in ocean-related research. We are happy to help you communicate your opportunity broadly and connect you with fantastic students.
+                        PIs, please <button className={'text-blue-800'} onClick={()=>{copyEmail('ocean@fas.harvard.edu')}}>email us</button> if you are seeking students interested in ocean-related research. We are happy to help you communicate your opportunity broadly and connect you with fantastic students.
                     </GrantCard>
                     <GrantCard
                         image={ehs}

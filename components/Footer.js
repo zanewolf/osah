@@ -37,7 +37,7 @@ const Footer = () => {
                     {/*        </a>*/}
                     {/*    </Link>*/}
                     {/*</div>*/}
-                    <div className={'email hover:scale-110 duration-200'}  onClick={()=>copy('oceans@fas.harvard.edu')}>
+                    <div className={'email hover:scale-110 duration-200'}  onClick={()=>copy('ocean@fas.harvard.edu')}>
                         {/*<Link href={'https://twitter.com/inzaneresearch'} passHref>*/}
                         {/*<a target={"_blank"} referrer={'noreferrer'}>*/}
                         <HiOutlineMail/>

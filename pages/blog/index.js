@@ -47,7 +47,7 @@ export default function Blog({content}) {
                             />
                         </div>
                         <div className={'font-bold bg-blue-500 rounded-xl text-lg text-center text-white'} >
-                            <button onClick={()=>copy('oceans@fas.harvard.edu')}>Have news you want to share with the community? Email us!
+                            <button onClick={()=>copy('ocean@fas.harvard.edu')}>Have news you want to share with the community? Email us!
                             </button>
                         </div>
                     </div>
