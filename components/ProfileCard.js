@@ -83,28 +83,28 @@ export default function ProfileCard({profile,index}) {
     return (
         <>
             <div className={`profileCard shadow-xl relative w-[300px] h-[450px]  rounded-xl m-1 sm:m-3 flex flex-col flex-nowrap text-center m-auto `}>
-                <div className={`colorHeader relative z-0 h-32 rounded-t-lg py-1 ${fieldColor === '#351431' ? 'bg-split-100' :
+                <div className={`colorHeader relative z-0 h-40 rounded-t-lg py-1 ${fieldColor === '#351431' ? 'bg-split-100' :
                     fieldColor === '#823c3a' ? 'bg-split-200' :
                         fieldColor === '#f5a578' ? 'bg-split-300' :
                             fieldColor === '#002d50' ? 'bg-split-400' :
                                 fieldColor === '#01778c' ? 'bg-split-500' :
                                     fieldColor === '#52b69a' ? 'bg-split-600' : 'bg-split-700' }`}>
-                    <div className="imageContainer z-0 ml-auto mr-auto my-2 w-24 h-24 overflow-hidden rounded-full">
+                    <div className="imageContainer m-auto block w-[40%] relative h-full mt-2 rounded-full overflow-hidden">
                         {image ?
-                            <Image
-                                loader={myLoader}
-                                className={'image'}
-                                src={profileImage}
-                                alt={'Profile picture of ' + profile.fields.Name}
-                                layout={'intrinsic'}
-                                quality={90}
-                                width={225}
-                                height={300}
-                                priority = {index < 10 ? true : false}
-                                onError={()=>setImage(false)}
-                            />
+                                <Image
+                                    loader={myLoader}
+                                    className={'profileImage'}
+                                    src={profileImage}
+                                    alt={'Profile picture of ' + profile.fields.Name}
+                                    layout={'fill'}
+                                    objectFit={'cover'}
+                                    unoptimized={false}
+                                    quality={100}
+                                    loading={"eager"}
+                                    priority = {index < 10 ? true : false}
+                                />
                             :
-                            <div className="avatarWrapper -translate-x-1 md:-translate-x-4 -translate-y-2">
+                            <div className="avatarWrapper ">
                                 <Avatar
                                     size={'12vh'}
                                     name={profile.fields.Name}
@@ -202,10 +202,11 @@ export default function ProfileCard({profile,index}) {
                                         className={'image'}
                                         src={profileImage}
                                         alt={'Profile picture of ' + profile.fields.Name}
-                                        layout={'intrinsic'}
+                                        layout={'fill'}
+                                        objectFit={'cover'}
                                         quality={90}
-                                        width={450}
-                                        height={600}
+                                        // width={450}
+                                        // height={600}
                                         priority = {index < 10 ? true : false}
                                     />
                                     :

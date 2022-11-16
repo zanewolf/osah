@@ -54,7 +54,7 @@ export default function Courses({content}) {
                 <div className={'text-2xl lg:text-5xl font-bold drop-shadow-xl shadow-black mb-8 mt-16 text-center'}>Undergraduate Marine-Related Courses
                 </div>
             </SectionHero>
-            <a className={`text-black pl-8 mt-4 text-lg `} href={'/for-undergrads'} onClick={handleClick}>⬅Go Back</a>
+            <a className={`text-black pl-8 mt-4 text-lg `} href={'/resources'} onClick={handleClick}>⬅Go Back</a>
             <div className={'text-black text-base h-auto min-h-[50vh] flex flex-col flex-nowrap justify-center m-auto w-[90vw] lg:w-4/5 gap-10 mt-4 mb-4'}>
                 <CourseList key={'harvardFall'} title={'Harvard Fall Courses'} courses={harvardFall}/>
                 <CourseList title={'Harvard Spring Courses'} courses={harvardSpring}/>

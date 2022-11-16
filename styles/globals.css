@@ -127,7 +127,10 @@ display: -webkit-box ;
   white-space: normal;
 }
 
-
+/*.profileImage{*/
+/*  border-radius: 50%;*/
+/*  z-index: -1;*/
+/*}*/
 
 .marker-cluster span{
   background-color: rgb(32, 243, 123);
