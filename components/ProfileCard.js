@@ -106,7 +106,7 @@ export default function ProfileCard({profile,index}) {
                             :
                             <div className="avatarWrapper ">
                                 <Avatar
-                                    size={'12vh'}
+                                    size={'11vh'}
                                     name={profile.fields.Name}
                                     variant="beam"
                                     colors={colors}
