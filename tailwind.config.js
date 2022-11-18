@@ -27,7 +27,7 @@ module.exports = {
           500: '#01778c',
           600: '#52b69a',
           700: '#818588',
-          800:'#000'
+          800:'#463934'
         }
       },
       backgroundImage: {
@@ -38,7 +38,7 @@ module.exports = {
         'split-500': "linear-gradient(to bottom, #01778c 50% , white 50%);",
         'split-600': "linear-gradient(to bottom, #52b69a 50% , white 50%);",
         'split-700': "linear-gradient(to bottom, #818588 50% , white 50%);",
-        'split-800': "linear-gradient(to bottom, #000 50% , white 50%);",
+        'split-800': "linear-gradient(to bottom, #463934 50% , white 50%);",
 
       },
       fontFamily: {

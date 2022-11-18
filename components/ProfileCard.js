@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import Image from "next/image";
 import {FaExternalLinkAlt,FaEnvelope,FaTimes} from "react-icons/fa";
 import Avatar from "boring-avatars";
@@ -13,8 +13,8 @@ const myLoader = ({ src, quality }) => {
 }
 let bgColor
 
-let paletteColors=['#351431','#823c3a','#f5a578',
-    '#002d50', '#01778c', '#52b69a','#818588']
+let paletteColors=['#351431','#823c3a','#f5a578', '#002d50',
+    '#01778c', '#52b69a','#818588','#463934']
 
 let fieldColor
 
@@ -25,7 +25,8 @@ const fieldColors={
     'Environmental Sciences': paletteColors[3],
     'Biological Sciences': paletteColors[4],
     'Engineering': paletteColors[5],
-    'Cross-Cutting':paletteColors[6]
+    'Cross-Cutting':paletteColors[6],
+    'Other':paletteColors[7]
 
 }
 
@@ -67,6 +68,9 @@ export default function ProfileCard({profile,index}) {
     let colors = paletteColors.filter(d=>d!==fieldColor)
 
 
+
+
+
     const copy =  (email) => {
         console.log(email)
         navigator.clipboard.writeText(email);
@@ -88,8 +92,9 @@ export default function ProfileCard({profile,index}) {
                         fieldColor === '#f5a578' ? 'bg-split-300' :
                             fieldColor === '#002d50' ? 'bg-split-400' :
                                 fieldColor === '#01778c' ? 'bg-split-500' :
-                                    fieldColor === '#52b69a' ? 'bg-split-600' : 'bg-split-700' }`}>
-                    <div className="imageContainer m-auto block w-[40%] relative h-full mt-2 rounded-full overflow-hidden">
+                                    fieldColor === '#52b69a' ? 'bg-split-600' :
+                                        fieldColor==='#818588'?'bg-split-700': 'bg-split-800' }`}>
+                    <div className="imageContainer m-auto block w-[40%] relative h-full my-2 rounded-full overflow-hidden">
                         {image ?
                                 <Image
                                     loader={myLoader}
@@ -101,10 +106,11 @@ export default function ProfileCard({profile,index}) {
                                     unoptimized={false}
                                     quality={100}
                                     loading={"eager"}
+                                    onError={()=>{setImage(false)}}
                                     priority = {index < 10 ? true : false}
                                 />
                             :
-                            <div className="avatarWrapper ">
+                            <div className="avatarWrapper translate-x-2 ">
                                 <Avatar
                                     size={'11vh'}
                                     name={profile.fields.Name}
@@ -119,7 +125,7 @@ export default function ProfileCard({profile,index}) {
 
                 {/*<div className={'m-auto justify-center w-[80%] bg-black h-[2px] m-2'}></div>*/}
                 <div className="profileTitles px-1 text-lg h-32 flex flex-col flex-nowrap justify-evenly">
-                    <div className="profileName m-2 h-auto text-3xl font-bold">
+                    <div className="profileName mt-3 mb-2 h-auto text-3xl font-bold">
                         {profile.fields.Name}
                     </div>
                     <div className="profileLocation font-bold">
@@ -129,7 +135,7 @@ export default function ProfileCard({profile,index}) {
                         {profile.fields.Title}
                     </div>
                 </div>
-                <div className="primaryFields text-md h-44 m-auto flex flex-col flex-nowrap justify-end pb-4">
+                <div className="primaryFields text-md h-44 m-auto flex flex-col flex-nowrap justify-end pb-1">
                     <div className="primaryField underline pb-1 uppercase">
                         {profile.fields.Primary_Field}
                     </div>
@@ -144,7 +150,8 @@ export default function ProfileCard({profile,index}) {
                         fieldColor === '#f5a578' ? 'bg-accent-300' :
                             fieldColor === '#002d50' ? 'bg-accent-400' :
                                 fieldColor === '#01778c' ? 'bg-accent-500' :
-                                    fieldColor === '#52b69a' ? 'bg-accent-600' : 'bg-accent-700' }`}>
+                                    fieldColor === '#52b69a' ? 'bg-accent-600' :
+                                        fieldColor==='#818588'?'bg-accent-700': 'bg-accent-800' }`}>
                     <div className="footerIcons flex flex-row flex-nowrap h-full text-white">
                         <div className={'websiteIcon items-center m-auto text-3xl md:text-3xl hover:scale-105 translate-y-1'}>
                             <button onClick={()=>openWebsite(profile.fields.Website)}>
@@ -195,7 +202,8 @@ export default function ProfileCard({profile,index}) {
                                     fieldColor === '#f5a578' ? 'border-accent-300' :
                                         fieldColor === '#002d50' ? 'border-accent-400' :
                                             fieldColor === '#01778c' ? 'border-accent-500' :
-                                                fieldColor === '#52b69a' ? 'border-accent-600' : 'border-accent-700'}`}>
+                                                fieldColor === '#52b69a' ? 'border-accent-600' :
+                                                    fieldColor==='#818588'?'border-accent-700': 'border-accent-800'}`}>
                                 {profileImage ?
                                     <Image
                                         loader={myLoader}
@@ -230,7 +238,8 @@ export default function ProfileCard({profile,index}) {
                                         fieldColor === '#f5a578' ? 'border-accent-300' :
                                             fieldColor === '#002d50' ? 'border-accent-400' :
                                                 fieldColor === '#01778c' ? 'border-accent-500' :
-                                                    fieldColor === '#52b69a' ? 'border-accent-600' : 'border-accent-700'}`}>
+                                                    fieldColor === '#52b69a' ? 'border-accent-600' :
+                                                        fieldColor==='#818588'?'border-accent-700': 'border-accent-800' }`}>
                                     {profile.fields.Title && profile.fields.Title} at {profile.fields.Affiliations && profile.fields.Affiliations}
                                 </div>
                                 <div className={`justify-center m-auto p-2 ${fieldColor === '#351431' ? 'border-accent-100' :
@@ -238,7 +247,8 @@ export default function ProfileCard({profile,index}) {
                                         fieldColor === '#f5a578' ? 'border-accent-300' :
                                             fieldColor === '#002d50' ? 'border-accent-400' :
                                                 fieldColor === '#01778c' ? 'border-accent-500' :
-                                                    fieldColor === '#52b69a' ? 'border-accent-600' : 'border-accent-700'}`}>
+                                                    fieldColor === '#52b69a' ? 'border-accent-600' :
+                                                        fieldColor==='#818588'?'border-accent-700': 'border-accent-800' }`}>
 
                                 </div>
 
@@ -263,7 +273,8 @@ export default function ProfileCard({profile,index}) {
                                     fieldColor === '#f5a578' ? 'bg-accent-300' :
                                         fieldColor === '#002d50' ? 'bg-accent-400' :
                                             fieldColor === '#01778c' ? 'bg-accent-500' :
-                                                fieldColor === '#52b69a' ? 'bg-accent-600' : 'bg-accent-700' }`}>
+                                                fieldColor === '#52b69a' ? 'bg-accent-600' :
+                                                    fieldColor==='#818588'?'bg-accent-700': 'bg-accent-800' }`}>
                                 <button
                                     title="Personal Website"
                                     aria-label={profile.fields.Name + " Modal Website Link"}
@@ -277,7 +288,8 @@ export default function ProfileCard({profile,index}) {
                                     fieldColor === '#f5a578' ? 'bg-accent-300' :
                                         fieldColor === '#002d50' ? 'bg-accent-400' :
                                             fieldColor === '#01778c' ? 'bg-accent-500' :
-                                                fieldColor === '#52b69a' ? 'bg-accent-600' : 'bg-accent-700' }`}>
+                                                fieldColor === '#52b69a' ? 'bg-accent-600' :
+                                                    fieldColor==='#818588'?'bg-accent-700': 'bg-accent-800' }`}>
                                 <button
                                     title="Click to copy email"
                                     aria-label={profile.fields.Name + " Modal Email Button"}
@@ -550,21 +562,8 @@ const RightBlock = styled.div`
   }
 
 `
-const ModalAbout = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
 
-`
-const AboutP = styled.p`
-  overflow: hidden;
-  margin-bottom: 2vh;
-  
-  @media screen and (max-width: 900px){
-    font-size: var(--size-14);
-  }
-  
 
-`
 const ModalAccordions = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -577,224 +576,3 @@ const ModalAccordions = styled.div`
   }
 `
 
-const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: right;
-  
-  button{
-    background: none;
-    border: none;
-    font-size: var(--size-32);
-
-    &:before {
-      //content: attr(title);
-      visibility: hidden;
-      opacity: 0;
-      width: 140px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 5px 0;
-      transition: opacity 1s ease-in-out;
-
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      top: 110%;
-
-    }
-    &:hover:before {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    &:hover{
-      font-weight: bolder;
-      transition: 0.5s;
-      //color: purple;
-      -webkit-transform: scale(1.1) translateZ(0);
-      transform: scale(1.1) translateZ(0);
-    }
-  }
-`
-const LeftBlock = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  width: 40%;
-  margin-right: 3vh;
-  max-height: 65vh;
-
-  @media screen and (max-width: 1200px) {
-    flex-flow: column nowrap;
-    margin: auto;
-    justify-content: center;
-    align-content: center;
-    width: auto;
-  }
-
-  @media screen and (max-width: 500px) {
-    flex-flow: column nowrap;
-    max-width: 90vw;
-    min-height: 75vh;
-    height: auto;
-    align-items: center;
-    align-content: center;
-    margin-bottom: 5vh;
-  }
-`
-const UserHeaderModal = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  margin: auto;
-  justify-content: center;
-  align-content: center;
-  
-  
-`
-const UserAvatarModal = styled.div`
-  border: 8px solid ${props => props.bandColor || "#ba0f0f"};;
-  margin: auto;
-  //margin-top: 10pt;
-  max-width: 40vh;
-  max-height: 40vh;
-  height: auto;
-  overflow: hidden;
-  border-radius: 50%;
-`
-// const UserImageModal = styled(GatsbyImage)`
-//   //margin-top: 10pt;
-//   border: 8px solid ${props => props.bandColor || "#ffffff"};;
-//   max-width: 30vh;
-//   width: auto;
-//   height: auto;
-//   max-height: 30vh;
-//   object-fit: cover;
-//   display: flex;
-//   justify-content: center;
-//   align-content: center;
-//   margin: auto;
-//   //border: 2px solid #03BFCB;
-//   border-radius: 50%;
-// `
-const UserNameModal = styled.h1`
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  font-size: var(--size-32);
-  text-transform: uppercase;
-  //word-break: break-all;
-  overflow-wrap: break-word;
-  text-align: center;
-  hyphens: manual;
-`
-const UserInfoModal = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-content: center;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  margin: auto;
-  height: 90%;
-
-  @media screen and (max-width: 500px) {
-    justify-content: space-evenly;
-    height: auto;
-  }
-
-`
-const UserEmploymentModal = styled.div`
-  display:flex;
-  flex-flow: column nowrap;
-  text-align: center;
-  justify-content: center;
-  margin: auto;
-  padding: 5px;
-`
-const UserRoleModal = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  text-align: center;
-  margin: auto;
-  font-size: var(--size-16);
-  font-weight: lighter;
-  padding: 5px;
-`
-const UserEmployerModal = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  text-align: center;
-  margin: auto;
-  font-size: var(--size-20);
-  font-weight: normal;
-  padding: 5px;
-`
-const UserFieldsModal = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: end;
-  align-self: flex-end;
-  text-align: center;
-  margin: auto;
-  
-  h4{
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.5);
-    font-size: var(--size-20);
-  }
-  h6{
-    font-size: var(--size-16);
-  }
-`
-const ContactButtons = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-`
-const ModalButton = styled.button`
-  width: 10vh;
-  height: 10vh;
-  border-radius: 50%;
-  padding: 9px 5px 5px 5px;
-  border: none;
-  font-size: var(--size-48);
-  color: #fff;
-  background-color: ${props => props.bandColor || "#000000"};
-
-  &:before {
-    //content: attr(title);
-    visibility: hidden;
-    opacity: 0;
-    width: 140px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px 0;
-    transition: opacity 1s ease-in-out;
-
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 110%;
-  }
-  &:hover:before {
-  opacity: 1;
-  visibility: visible;
-}
-
-  &:hover{
-    font-weight: bolder;
-    transition: 0.5s;
-    //color: purple;
-    -webkit-transform: scale(1.1) translateZ(0);
-    transform: scale(1.1) translateZ(0);
-  }
-  
-
-`

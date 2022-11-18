@@ -35,6 +35,9 @@ let options=  [
     }, {
         "value": "Cross-Cutting",
         "label": "Cross-Cutting Fields"
+    }, {
+        "value": "Other",
+        "label": "Other"
     }
 ]
 
@@ -56,12 +59,11 @@ export default function People({content}) {
     const [selected, setSelected] = useState(options);
     const [buttonText, setButtonText] = useState('')
     const [search, setSearch] = useState("");
-    const [dirData, setDirData] = useState(content)
+    const [dirData, setDirData] = useState(content.sort((a,b)=>{
+        return a.fields.Name.split(' ')[1].localeCompare(b.fields.Name.split(' ')[1])
 
-    // const { data, error } = useSWR('/api/getPeople', fetcher)
-    //
-    // console.log(data)
-    //
+    }))
+
 
 
 
@@ -101,7 +103,7 @@ export default function People({content}) {
                 return profile.fields.Primary_Field in primaryFields
             })
 
-        // console.log(filteredData2)
+
         setDirData(filteredData2)
     },[search,selected,content])
 
@@ -164,7 +166,7 @@ export default function People({content}) {
 
                     </SectionHero>
 
-                    <div className="min-h-[50vh] h-auto flex flex-row flex-wrap justify-evenly text-black m-auto py-2">
+                    <div className="min-h-[50vh] gap-3 h-auto flex flex-row flex-wrap justify-evenly text-black m-auto py-2">
                         {dirData.map((profile,i)=>{
                             // console.log(profile)
                             return <ProfileCard profile={profile} index={i} key={profile.id}> </ProfileCard>

@@ -15,6 +15,11 @@ function MyApp({ Component, pageProps }) {
             setLoading(true);
         };
         const end = () => {
+            var delayInMilliseconds = 500; //1 second
+
+            setTimeout(function() {
+                //your code to be executed after 1 second
+            }, delayInMilliseconds);
             setLoading(false);
         };
         Router.events.on("routeChangeStart", start);
