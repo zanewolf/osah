@@ -146,3 +146,8 @@ display: -webkit-box ;
   /*z-index:-500;*/
 
 }
+
+.profileImage{
+  /*max-height: unset !important;*/
+  /*max-width: unset !important;*/
+}

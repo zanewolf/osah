@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
 
     const [loading, setLoading] = useState(false);
 
+
     useEffect(() => {
         const start = () => {
             setLoading(true);

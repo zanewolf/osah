@@ -7,17 +7,17 @@ export default function GrantCard({image, title, imagePriority, reverse,first,ch
     return (
         <>
             <div className={`flex flex-wrap lg:flex-nowrap justify-around gap-2 lg:gap-x-10 w-[90vw] h-auto lg:w-[75vw] lg:h-[45vh] ${reverse ? 'flex-row-reverse' : 'flex-row'} items-center m-auto`}>
-                <div className={'w-[400px] h-[400px] relative'}>
+                <div className={'w-[95vw] h-[35vh] sm:w-[70vw] sm:h-[45vh] lg:w-[30vw] lg:h-[35vh] relative overflow-hidden'}>
                     <Image
                         // className={styles.landingImage}
                         priority={imagePriority}
                         src={image}
                         alt="Picture of people sitting around a desk"
-                        layout={'fill'}
-                        // width={400}
+                        // layout={'fill'}
+                        // width={600}
                         // height={250}
-                        objectFit={'cover'}
-                        objectPosition={'center'}
+                        fill={'contain'}
+                        // objectPosition={'center'}
                         // position={'relative'}
                     />
                     <div className={`relative flex text-white h-full w-full m-auto p-2 text-center items-center text-5xl font-extrabold bg-black bg-opacity-60`}>

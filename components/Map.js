@@ -147,7 +147,7 @@ export default function MapWrapper({data}){
                                         </div>
                                         <hr/>
                                         <div className={'text-left py-2'}>
-                                            <h3><span className={'font-bold'}>Data Collected:</span> <span>{node.fields.Data_Medium}</span></h3>
+                                            <h3><span className={'font-bold'}>Data Collected:</span> <span>{node.fields.Data_Medium?.join(', ')}</span></h3>
                                             <h3><span className={'font-bold'}>Data available:</span> {node.fields.Data_Available === 'Public'?
                                                 <a href={node.fields.Data_Link} target={"_blank"} rel={'noreferrer'} >Public Link <FaExternalLinkAlt/></a>
                                                 :

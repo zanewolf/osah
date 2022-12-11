@@ -80,7 +80,7 @@ export default function BlogBody({content, accentColor}) {
                 const {uri} = node.data;
                 const {value} = node.content[0];
                 return (
-                    <Link href={uri}>
+                    <Link href={uri} legacyBehavior={true}>
                         <a target="_blank" rel="noreferrer noopener" className={`text-sky-900 underline`}>
                             {value}
                         </a>

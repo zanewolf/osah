@@ -15,11 +15,11 @@ export default function Workshop() {
                         priority
                         src={workshoppic}
                         alt="Picture of people sitting around a desk"
-                        layout={'fill'}
+                        // layout={'fill'}
                         // width={400}
                         // height={250}
-                        objectFit={'cover'}
-                        objectPosition={'center'}
+                        fill={'cover'}
+                        // objejctPosition={'center'}
                         // position={'relative'}
                     />
                 </div>

@@ -16,11 +16,11 @@ export default function InfoCard({image, title, imagePriority, reverse,children}
                         priority={imagePriority}
                         src={image}
                         alt="Picture of people sitting around a desk"
-                        layout={'fill'}
+                        // layout={'fill'}
                         // width={400}
                         // height={250}
-                        objectFit={'cover'}
-                        objectPosition={'center'}
+                        fill={'cover'}
+                        // objectPosition={'center'}
                         // position={'relative'}
                     />
                 </div>

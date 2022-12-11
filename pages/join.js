@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import Hero from "../components/Hero";
 import ocean3 from "../public/ocean3.jpg";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ let airTableForm = "https://airtable.com/shrZtj5uOH8Ncc9zC";
 let airtableDataForm = "https://airtable.com/shrlU4ivGTFhQn6vb"
 
 export default function JoinPage() {
+
 
     const openGuide = (doc)=>{
         console.log('open guide')

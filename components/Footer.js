@@ -17,7 +17,7 @@ const Footer = () => {
                 {/*<div className="text-2xl m-auto">follow or contact me</div>*/}
                 <div className="icons flex flex-row justify-center text-2xl md:text-7xl gap-12 md:gap-24 mt-4">
                     <div className={"twitter hover:scale-110 duration-200"}>
-                        <Link href={'https://twitter.com/OceanScholars'} passHref>
+                        <Link href={'https://twitter.com/OceanScholars'} passHref legacyBehavior={true}>
                             <a target={"_blank"} referrer={'noreferrer'}>
                                 <AiOutlineTwitter />
                             </a>

@@ -24,8 +24,9 @@ export async function getStaticProps(){
 
 export default function Courses({content}) {
     let harvardFall = content.filter((d,i)=>{
+        // console.log(d.fields.Name)
         return d.fields.Semester==='Fall' & d.fields.School ==='Harvard'
-    })
+    }).sort((a,b)=>b.fields.Name - a.fields.Name)
     let harvardSpring = content.filter((d,i)=>{
         return d.fields.Semester==='Spring' & d.fields.School ==='Harvard'
     })
@@ -36,6 +37,8 @@ export default function Courses({content}) {
         return d.fields.Semester==='Spring' & d.fields.School ==='MIT'
     })
 
+    // console.log(harvardFall)
+
     const router = useRouter()
     // const style = {
     //     marginRight: 10,
@@ -44,7 +47,7 @@ export default function Courses({content}) {
 
     const handleClick = (e) => {
         e.preventDefault()
-        router.push('/undergrad')
+        router.push('/resources')
     }
 
 
@@ -59,7 +62,7 @@ export default function Courses({content}) {
                 <CourseList key={'harvardFall'} title={'Harvard Fall Courses'} courses={harvardFall}/>
                 <CourseList title={'Harvard Spring Courses'} courses={harvardSpring}/>
                 <CourseList title={'MIT Fall Courses'} courses={mitFall}/>
-                <CourseList title={'MIT Spring Courses'} courses={mitSpring} updating={true}/>
+                <CourseList title={'MIT Spring Courses'} courses={mitSpring}/>
             </div>
 
         </>

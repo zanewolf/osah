@@ -18,7 +18,7 @@ export default function BlogCard(blog) {
                             alt={'project-image-'+slug}
                             blurDataURL={`https://${bannerImage.fields.file.url}?q=${80}`}
                             placeholder="blur"
-                            objectFit={'cover'}
+                            fill={'cover'}
                             // sizes={'100%'}
                             // width={'100%'}
                             // height={'100%'}
@@ -41,7 +41,7 @@ export default function BlogCard(blog) {
                         </div>
 
                             {/*<p>Takes approx 20min  mins to make</p>*/}
-                        <Link href={'/blog/' + slug}><a className={'text-white font-bold bg-sky-900 w-1/3 m-auto items-center text-center rounded-2xl p-2'}>Read More</a></Link>
+                        <Link href={'/blog/' + slug} legacyBehavior={true}><a className={'text-white font-bold bg-sky-900 w-1/3 m-auto items-center text-center rounded-2xl p-2'}>Read More</a></Link>
                         {/*</div>*/}
                     </div>
                     </div>

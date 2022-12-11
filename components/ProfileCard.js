@@ -7,6 +7,7 @@ import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 import {ExpandMore} from "@material-ui/icons";
 import Modal from 'react-modal'
 import TagSection from "./TagSection";
+import blurAvatar from '../public/avatar.png'
 
 const myLoader = ({ src, quality }) => {
     return `${src}?&q=${quality || 100}`
@@ -38,8 +39,9 @@ const customStyles = {
         bottom: 'auto',
         position:'absolute',
         transform: 'translate(-50%, -50%)',
-        marginTop: `var( --screen-nav-bar-height)`,
-        height: '80vh',
+        marginTop: `2vh`,
+        // minHeight: '80vh',
+        height:'85vh',
         borderRadius: '15px',
         color: 'black',
         // maxWidth: '95vw',
@@ -68,6 +70,11 @@ export default function ProfileCard({profile,index}) {
     let colors = paletteColors.filter(d=>d!==fieldColor)
 
 
+    // useEffect(() => {
+    //     setTimeout(()=>{
+    //         window.location.reload(true);
+    //     }, 1000)
+    // },[retrigger] )
 
 
 
@@ -87,32 +94,42 @@ export default function ProfileCard({profile,index}) {
     return (
         <>
             <div className={`profileCard shadow-xl relative w-[300px] h-[450px]  rounded-xl m-1 sm:m-3 flex flex-col flex-nowrap text-center m-auto `}>
-                <div className={`colorHeader relative z-0 h-40 rounded-t-lg py-1 ${fieldColor === '#351431' ? 'bg-split-100' :
+                <div className={`colorHeader relative z-0 h-36 rounded-t-lg p-2 ${fieldColor === '#351431' ? 'bg-split-100' :
                     fieldColor === '#823c3a' ? 'bg-split-200' :
                         fieldColor === '#f5a578' ? 'bg-split-300' :
                             fieldColor === '#002d50' ? 'bg-split-400' :
                                 fieldColor === '#01778c' ? 'bg-split-500' :
                                     fieldColor === '#52b69a' ? 'bg-split-600' :
                                         fieldColor==='#818588'?'bg-split-700': 'bg-split-800' }`}>
-                    <div className="imageContainer m-auto block w-[40%] relative h-full my-2 rounded-full overflow-hidden">
+                    <div className="imageContainer m-auto block w-28 h-28 relative rounded-full overflow-hidden">
                         {image ?
                                 <Image
                                     loader={myLoader}
                                     className={'profileImage'}
                                     src={profileImage}
                                     alt={'Profile picture of ' + profile.fields.Name}
-                                    layout={'fill'}
-                                    objectFit={'cover'}
-                                    unoptimized={false}
+                                    // fill={'cover'}
+                                    width={500}
+                                    height={500}
+                                    unoptimized={true}
                                     quality={100}
                                     loading={"eager"}
-                                    onError={()=>{setImage(false)}}
+                                    // onError={()=>{setImage(false)}}
                                     priority = {index < 10 ? true : false}
+                                    placeholder={<Avatar
+                                        size={'12vh'}
+                                        name={profile.fields.Name}
+                                        variant="beam"
+                                        colors={colors}
+                                    />}
+                                    // blurDataUrl={blurAvatar}
+                                    // style={{minWidth:"100px",width:"auto",height:"auto",minHeight:"100px"}}
                                 />
+
                             :
-                            <div className="avatarWrapper translate-x-2 ">
+                            <div className="avatarWrapper ">
                                 <Avatar
-                                    size={'11vh'}
+                                    size={'12vh'}
                                     name={profile.fields.Name}
                                     variant="beam"
                                     colors={colors}
@@ -183,10 +200,11 @@ export default function ProfileCard({profile,index}) {
                 contentLabel="Profile Modal"
                 ariaHideApp={false}
                 preventScroll={true}
+                size={'xl'}
                 backdropClassName={'modal-backdrop'}
                 overlayClassName="Overlay"
             >
-                <div className={`flex justify-end m-auto text-black text-4xl`}>
+                <div className={`flex justify-end m-auto text-black text-2xl`}>
                     <button
                         aria-label={profile.fields.Name + "Profile Modal Close Button"}
                         onClick={()=>setModalState(false)}
@@ -210,8 +228,9 @@ export default function ProfileCard({profile,index}) {
                                         className={'image'}
                                         src={profileImage}
                                         alt={'Profile picture of ' + profile.fields.Name}
-                                        layout={'fill'}
-                                        objectFit={'cover'}
+                                        // fill={'cover'}
+                                        width={500}
+                                        height={500}
                                         quality={90}
                                         // width={450}
                                         // height={600}

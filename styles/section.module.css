@@ -2,6 +2,7 @@
 .heroWrapper {
     height: 100vh;
     position:relative;
+    overflow:hidden;
 }
 
 @media only screen and (max-width: 1024px){

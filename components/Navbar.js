@@ -6,7 +6,8 @@ import {update} from "lodash";
 import {useRouter} from "next/router";
 
 function NavLink({to, route, children}) {
-    return <Link href={to} className={`mx-4 `}>
+    return <Link href={to} className={`mx-4 `}
+                 legacyBehavior={true}>
         <a className={`hover:scale-110 duration-70 ${ route == to ? "font-bold" : "font-light"}`} >
             {children}
         </a></Link>
@@ -16,7 +17,7 @@ function MobileNav({open, setOpen}) {
     return (
         <div className={`mobileMenu absolute top-0 left-0 h-full min-h-screen w-screen bg-black z-10 transform ${open ? "-translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
             <div className="flex items-center justify-center filter pt-4 drop-shadow-md bg-white h-28"> {/*logo container*/}
-                <Link href="/">
+                <Link href="/" legacyBehavior={true}>
                     <a className="text-xl font-semibold text-black " >Ocean Scholars @ Harvard University</a>
                 </Link>
             </div>
@@ -24,7 +25,7 @@ function MobileNav({open, setOpen}) {
                 <div className="flex flex-col justify-center mt-12">
                     {menuData.map((navLink,i)=>{
                         return (
-                            <Link key={i} href={navLink.to}>
+                            <Link key={i} href={navLink.to} legacyBehavior={true}>
                                 <a className="text-4xl font-medium my-4 justify-center"  onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                                     {navLink.title}
                                 </a>
@@ -60,7 +61,7 @@ export default function Navbar() {
             <div className="w:1/2 md:w-5/12 flex items-center">
                 {/*<a className="text-2xl font-semibold" href="/">LOGO</a>*/}
                 <h1 className={`text-3xl lg:text-4xl flex justify-center ${open ? 'text-black' :'text-primary'}`}>
-                    <Link href={'/'}>
+                    <Link href={'/'} legacyBehavior={true}>
                         <a>
                             <div className={''}>
                                 Ocean Scholars

@@ -142,6 +142,7 @@ export default function CruiseMap ({data}) {
                 <MarkerClusterGroup>
 
                     {displayData.nodes.map((node, i) => {
+                        console.log(node.data.Data_Medium)
                         fieldColor = node.data.Primary_Field in fieldColors ? fieldColors[node.data.Primary_Field] : '#818588'
                         return (
                             <Marker
@@ -159,7 +160,7 @@ export default function CruiseMap ({data}) {
                                         <h2>{node.data.People_Involved}</h2>
                                     </HeaderInfo>
                                     <hr/>
-                                    <h3>Data Collected: <span>{node.data.Data_Medium}</span></h3>
+                                    <h3>Data Collected: <span>{node.data.Data_Medium?.join(",")}</span></h3>
                                     <h3>Research Focus: <span>{node.data.Research_Focus}</span></h3>
 
                                     <h3>Data available: {node.data.Data_Available === 'Public'?
