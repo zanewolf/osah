@@ -13,11 +13,11 @@ export default function SectionHero ({image,imageposition,imageheight,children})
                     priority={true}
                     src={image}
                     alt="Picture of ocean surface with sunset rays"
-                    // layout={'fill'}
-                    // objectFit={'cover'}
-                    // objectPosition={imageposition}
+                    layout={'fill'}
+                    objectFit={'cover'}
+                    objectPosition={imageposition}
                     placeholder="blur"
-                    fill={'cover'}
+                    // fill={'cover'}
                     // position={'relative'}
                 />
             {/*</div>*/}
