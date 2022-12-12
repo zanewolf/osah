@@ -7,7 +7,7 @@ import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 import {ExpandMore} from "@material-ui/icons";
 import Modal from 'react-modal'
 import TagSection from "./TagSection";
-import blurAvatar from '../public/avatar.png'
+// import blurAvatar from '../public/avatar.png'
 
 const myLoader = ({ src, quality }) => {
     return `${src}?&q=${quality || 100}`
@@ -114,14 +114,14 @@ export default function ProfileCard({profile,index}) {
                                     unoptimized={true}
                                     quality={100}
                                     loading={"eager"}
-                                    // onError={()=>{setImage(false)}}
+                                    onLoadingComplete={()=>{setImage(true)}}
                                     priority = {index < 10 ? true : false}
-                                    placeholder={<Avatar
-                                        size={'12vh'}
-                                        name={profile.fields.Name}
-                                        variant="beam"
-                                        colors={colors}
-                                    />}
+                                    // placeholder={<Avatar
+                                    //     size={'12vh'}
+                                    //     name={profile.fields.Name}
+                                    //     variant="beam"
+                                    //     colors={colors}
+                                    // />}
                                     // blurDataUrl={blurAvatar}
                                     // style={{minWidth:"100px",width:"auto",height:"auto",minHeight:"100px"}}
                                 />
