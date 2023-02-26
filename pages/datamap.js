@@ -128,7 +128,7 @@ export default function DataMap({content}) {
         <div>
             <SectionHero image={ocean3} imageposition={'center'} imageheight={'30vh'}>
                 <div className="directoryHeader relative flex flex-col flex-nowrap justify-end items-center m-auto h-[30vh] w-[100vw] mb-8">
-                    <div className={'text-2xl lg:text-6xl font-bold drop-shadow-xl shadow-black mb-8'}>Map of Community Data</div>
+                    <div className={'text-2xl lg:text-5xl xl:text-6xl font-bold drop-shadow-xl shadow-black mb-8'}>Map of Community Data</div>
                     <div className="directoryMenu flex flex-row flex-nowrap justify-evenly lg:justify-around text-black w-[100vw] ">
                         <div className="selectMenu w-1/3 ">
                             <MultiSelect

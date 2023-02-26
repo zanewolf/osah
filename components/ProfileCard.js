@@ -114,8 +114,9 @@ export default function ProfileCard({profile,index}) {
                                     unoptimized={true}
                                     quality={100}
                                     loading={"eager"}
+                                    onError={()=>setImage(false)}
                                     onLoadingComplete={()=>{setImage(true)}}
-                                    priority = {index < 10 ? true : false}
+                                    priority
                                     // placeholder={<Avatar
                                     //     size={'12vh'}
                                     //     name={profile.fields.Name}

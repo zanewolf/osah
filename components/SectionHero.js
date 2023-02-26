@@ -6,7 +6,7 @@ import {Button} from '@material-ui/core'
 
 export default function SectionHero ({image,imageposition,imageheight,children}) {
     return (
-        <section className={`relative overflow-hidden block ${imageheight === '30vh'? 'h-[30vh]' : 'h-[50vh]'}  w-[100vw]`}>
+        <section className={`relative overflow-hidden block ${imageheight === '30vh'? 'h-[33vh]' : 'h-[50vh]'}  w-[100vw]`}>
             {/*<div className={styles.imageWrapper}>*/}
                 <Image
                     // className={styles.landingImage}
